@@ -25,7 +25,7 @@ api_urls.register('ranks', RankViewSet)
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include(api_urls.urls)),
-    path('accounts/', include('allauth.urls')),
+    # path('accounts/', include('allauth.urls')),
     path('api/auth/', include('dj_rest_auth.urls')),
     path('api/auth/registration/', include('dj_rest_auth.registration.urls')),
 

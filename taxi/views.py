@@ -17,7 +17,6 @@ class RankViewSet(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend,)
     filter_fields = (
         'name',
-        'taxis_ranking__destination'
     ) 
 
 

@@ -26,6 +26,7 @@ class RankSerializer(serializers.ModelSerializer):
         fields = [
             'id',
             'name',
+            'ranking_taxis',
         ]
 
 

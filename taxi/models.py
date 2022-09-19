@@ -18,15 +18,24 @@ class Taxi(models.Model):
     manufature = models.CharField(max_length=200)
     model = models.CharField(max_length=200)
 
-class Destination:
+    def __str__(self) -> str:
+        return self.manufature + '-' + self.model
+
+class Destination(models.Model):
     name = models.CharField(max_length=200)
     lat = models.FloatField()
     lan = models.FloatField()
 
+    def __str__(self) -> str:
+        return self.name
+
 
 class RankingTaxis(models.Model):
     taxi = models.ForeignKey(Taxi,on_delete=models.CASCADE)
-    destination = models.ForeignKey(User,on_delete=models.CASCADE)
+    destination = models.ForeignKey(Destination,on_delete=models.CASCADE)
+
+    def __str__(self) -> str:
+        return self.taxi.model
 
 class Rank(models.Model):
     name = models.CharField(max_length=200)
