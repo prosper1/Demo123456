@@ -8,6 +8,9 @@ from django.contrib.auth.models import User
 class Passanger(models.Model):
     user = models.OneToOneField(User,on_delete=models.CASCADE,related_name="passenger")
 
+    def __str__(self) -> str:
+        return self.user.username + '|' + self.user.first_name
+
 
 class Driver(models.Model):
     user = models.OneToOneField(User,on_delete=models.CASCADE,related_name="driver")

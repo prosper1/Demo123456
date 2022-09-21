@@ -15,12 +15,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from taxi.views import api, RankViewSet
+from taxi.views import api, RankViewSet, TaxiViewSet
 from rest_framework.routers import DefaultRouter
 
 
 api_urls = DefaultRouter()
 api_urls.register('ranks', RankViewSet)
+api_urls.register('taxi', TaxiViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),

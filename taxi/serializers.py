@@ -15,8 +15,8 @@ class TaxiSerializer(serializers.ModelSerializer):
         model = Taxi
         fields = [
             'id',
-            'name',
-           
+            'model',
+            'manufature'
         ]
 
 class RankSerializer(serializers.ModelSerializer):
