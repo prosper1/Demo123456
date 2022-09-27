@@ -147,7 +147,8 @@ USE_TZ = True
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:8000",
-    "http://localhost:4200", 
+    "http://localhost:4200",
+    "https://taxifind.herokuapp.com"
 ]
 
 # Static files (CSS, JavaScript, Images)
