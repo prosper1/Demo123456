@@ -103,16 +103,10 @@ WSGI_APPLICATION = 'autotaxi.wsgi.application'
 #     }
 # }
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'autotaxi',
-        'USER': 'postgres',
-        'PASSWORD': 'Unlock@2022',
-        'HOST': 'localhost',
-        'PORT': '5432',
-    }
-}
+
+import dj_database_url
+DATABASES = {'default': dj_database_url.config()}
+
 
 
 # Password validation
