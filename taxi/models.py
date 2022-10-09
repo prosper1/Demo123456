@@ -16,6 +16,7 @@ class Driver(models.Model):
     user = models.OneToOneField(User,on_delete=models.CASCADE,related_name="driver")
 
 
+#edited this
 class Taxi(models.Model):
     registration = models.CharField(max_length=200)
     manufature = models.CharField(max_length=200)
