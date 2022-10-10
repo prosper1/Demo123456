@@ -92,24 +92,24 @@ WSGI_APPLICATION = 'autotaxi.wsgi.application'
 
 #Change this to the db name used when installing on your computer.
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'autotaxidb',
-#         'USER': 'postgres',
-#         'PASSWORD': 'simplepass123',
-#         'HOST': 'localhost',
-#         'PORT': '5432',
-#     }
-# }
-
-
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'dblpb20nff8poo',
+        'USER': 'izplkajahduigp',
+        'PASSWORD': 'a4370e6536fcbf9961dc79a29b0b6145eb0ef0fed2c941f9eae50f14721a797f',
+        'HOST': 'ec2-52-207-90-231.compute-1.amazonaws.com',
+        'PORT': '5432',
     }
 }
+
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
 
 
 
