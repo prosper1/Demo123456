@@ -149,7 +149,10 @@ CORS_ALLOWED_ORIGINS = [
     "http://localhost:4200",
     "https://taxifind.herokuapp.com",
     "http://www.ifindtaxi.co.za",
-    "https://www.ifindtaxi.co.za"
+    "https://www.ifindtaxi.co.za",
+    "https://www.mtindustry.co.za",
+    "http://www.mtindustry.co.za",
+    "https://mtindustry.co.za",
 ]
 
 # Static files (CSS, JavaScript, Images)
