@@ -20,7 +20,7 @@ const options = {
 };
 
 
-const apiUrl = 'http://localhost:8000/';
+const apiUrl = 'https://ifindtaxi.herokuapp.com';
 
 
 @Injectable({
@@ -38,7 +38,7 @@ export class AuthenticationService {
   ) { }
 
   login(logins:object): Observable<any> {
-    const url = apiUrl + 'auth/login/';
+    const url = apiUrl + 'api/auth/login/';
     return this.http.post(url, logins,httpOptions).pipe(
       tap(_ =>
         this.isLoggedIn = true

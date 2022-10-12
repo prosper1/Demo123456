@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthenticationService } from '../_services/authentication.service';
 
+
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -59,11 +60,11 @@ export class RegisterComponent implements OnInit {
     .subscribe(res => {
       localStorage.setItem('token', res.key);
       this.isLoggedIn = this.authService.isLoggedIn
-      console.log(res);
+       console.log(res);
     }, err => {
       console.log(err);
       console.log("gdgdgdg");
-      this.loading = false;
+       this.loading = false;
     });
   }
 
