@@ -20,7 +20,7 @@ const options = {
 };
 
 
-const apiUrl = 'https://ifindtaxi.herokuapp.com';
+const apiUrl = 'https://ifindtaxi.herokuapp.com/';
 
 
 @Injectable({
