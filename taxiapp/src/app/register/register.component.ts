@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 import { AuthenticationService } from '../_services/authentication.service';
 
 
@@ -18,7 +19,8 @@ export class RegisterComponent implements OnInit {
   state = '';
 
   constructor(private formBuilder: FormBuilder,
-    private authService: AuthenticationService) {
+    private authService: AuthenticationService,
+    private toastr: ToastrService) {
     this.form = this.formBuilder.group({
       username : ['', [ Validators.required,Validators.minLength(5)]],
       email: ['', [ Validators.required, Validators.email]],
@@ -60,6 +62,7 @@ export class RegisterComponent implements OnInit {
     .subscribe(res => {
       localStorage.setItem('token', res.key);
       this.isLoggedIn = this.authService.isLoggedIn
+      this.toastr.success('Registration successful', 'wow, thats a snap! ');
        console.log(res);
     }, err => {
       console.log(err);

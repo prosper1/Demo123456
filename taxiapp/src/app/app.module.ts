@@ -11,6 +11,7 @@ import { TokenInterceptor } from './interceptors/token.interceptor';
 import { NavComponent } from './shared/nav/nav.component';
 import { HomeComponent } from './home/home.component';
 import { RegisterDriverComponent } from './register-driver/register-driver.component';
+import { ToastrModule, ToastNoAnimation, ToastNoAnimationModule } from 'ngx-toastr';
 
 
 @NgModule({
@@ -33,6 +34,7 @@ import { RegisterDriverComponent } from './register-driver/register-driver.compo
     ),
     FormsModule,
     ReactiveFormsModule,
+    ToastNoAnimationModule.forRoot(),
   ],
   providers: [
     {
