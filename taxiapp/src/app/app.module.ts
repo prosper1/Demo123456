@@ -10,6 +10,7 @@ import { HttpClientModule, HttpClientXsrfModule, HTTP_INTERCEPTORS } from '@angu
 import { TokenInterceptor } from './interceptors/token.interceptor';
 import { NavComponent } from './shared/nav/nav.component';
 import { HomeComponent } from './home/home.component';
+import { RegisterDriverComponent } from './register-driver/register-driver.component';
 
 
 @NgModule({
@@ -19,6 +20,7 @@ import { HomeComponent } from './home/home.component';
     RegisterComponent,
     NavComponent,
     HomeComponent,
+    RegisterDriverComponent,
   ],
   imports: [
     BrowserModule,

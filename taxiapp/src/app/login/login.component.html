@@ -1,8 +1,11 @@
+
+<div class="container">
+  <br><br>
 <h1 class="h3 mb-3 fw-normal">Sign in</h1>
         <form [formGroup]="form" (ngSubmit)="onSubmit()">
          <div class="form-floating">
-            <input type="text" class="form-control" formControlName="email"  [ngClass]="{ 'is-invalid': submitted && f.email.errors }" id="floatingInput" placeholder="johndoe">
-            <label for="floatingInput">Username</label>
+            <input type="email" class="form-control" formControlName="email"  [ngClass]="{ 'is-invalid': submitted && f.email.errors }" id="floatingInput" placeholder="johndoe">
+            <label for="floatingInput">Email</label>
           </div>
           <div class="form-floating">
             <input type="password" class="form-control" formControlName="password" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" id="floatingPassword" placeholder="Password">
@@ -19,3 +22,5 @@
           <button class="w-100 btn btn-lg btn-outline-dark rounded-xl" type="button" data-bs-target="#exampleModalToggle3" data-bs-toggle="modal" data-bs-dismiss="modal">SignUp with Email</button>
           
         </form>
+
+      </div>
