@@ -1,0 +1,26 @@
+<section>
+    <br><br>
+    <div class="container" id=""> 
+    <div class="col-md-6">
+        <div *ngIf="ranks">
+            <div *ngFor="let item of ranks" class="card mb-3" style="max-width: 540px;">
+                <div class="row g-0">
+                <div class="col-md-5">
+                    <img (click)="goto(item.id)" src="{{item.main_image}}" width="100%" alt="...">
+                </div>
+                <div class="col-md-7">
+                    <div class="card-body mxf">
+                    <a routerLink="/car-details/{{item.id}}">
+                        <h5 class="card-title">{{item.name}}</h5>
+                        <p class="card-text">.</p>
+                        <p class="card-text"><small class="text-muted">R</small></p>
+                    </a>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+       
+    </div>
+    </div>
+  </section>

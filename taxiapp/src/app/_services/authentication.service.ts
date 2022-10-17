@@ -55,12 +55,16 @@ export class AuthenticationService {
     );
   }
 
-
+  updateUser(userInfo:object){
+    const url = apiUrl + 'api/auth/user/';
+    return this.http.patch(url, userInfo, httpOptions).pipe(
+      tap(_ => this.isLoggedIn = true),
+      catchError(this.handleError('register', []))
+    );
+  }
  
-
-  
   user(): Observable<any> {
-    return this.http.get(apiUrl + 'api/cars/user-details/',httpOptions).pipe(
+    return this.http.get(apiUrl + 'api/auth/user/',httpOptions).pipe(
       tap(_ => console.log('got user')),
       catchError(this.handleError('register', []))
     );

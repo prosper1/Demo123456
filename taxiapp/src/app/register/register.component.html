@@ -3,7 +3,7 @@
 <h1 class="h3 mb-3 fw-normal">Sign Up</h1>
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
   <div class="form-floating">
-    <input type="text" class="form-control" formControlName="username"  [ngClass]="{ 'is-invalid': submittedR && f.username.errors }" id="floatingInput" placeholder="username">
+    <input type="text" class="form-control" formControlName="username"  [ngClass]="{ 'is-invalid': submitted && f.username.errors }" id="floatingInput" placeholder="username">
     <label for="floatingInput">Username</label>
     
   </div>

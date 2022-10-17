@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { AuthenticationService } from '../_services/authentication.service';
 
@@ -15,12 +16,13 @@ export class RegisterComponent implements OnInit {
   submitted = false;
   returnUrl: string = "";
   isLoggedIn = false;
-  submittedR = false;
   state = '';
 
   constructor(private formBuilder: FormBuilder,
     private authService: AuthenticationService,
-    private toastr: ToastrService) {
+    private toastr: ToastrService,
+    private route: ActivatedRoute,
+    private router: Router,) {
     this.form = this.formBuilder.group({
       username : ['', [ Validators.required,Validators.minLength(5)]],
       email: ['', [ Validators.required, Validators.email]],
@@ -36,7 +38,7 @@ export class RegisterComponent implements OnInit {
 
   onSubmit(): void {
 
-    this.submittedR = true;
+    this.submitted = true;
 
     // stop here if form is invalid
     if (this.form.invalid) {
@@ -64,9 +66,12 @@ export class RegisterComponent implements OnInit {
       this.isLoggedIn = this.authService.isLoggedIn
       this.toastr.success('Registration successful', 'wow, thats a snap! ');
        console.log(res);
+       this.router.navigate([''])
     }, err => {
       console.log(err);
+      this.toastr.error('Registration failes','Oopsie!!! something going wrong with your registration')
       console.log("gdgdgdg");
+
        this.loading = false;
     });
   }
