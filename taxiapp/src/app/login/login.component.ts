@@ -61,6 +61,7 @@ export class LoginComponent implements OnInit {
       if (token){
         this.isLoggedIn = this.authService.isLoggedIn
         this.toastr.success('Login successful', 'Welcome back!!!! Great ');
+        this.user()
         this.router.navigate([''])
       }
 
@@ -75,6 +76,13 @@ export class LoginComponent implements OnInit {
       this.toastr.error('Login failed','Oopsie!!! something going wrong with your Login')
       this.loading = false;
     });
+  }
+
+  user(): void {
+    this.authService.user().subscribe(res => {
+      console.log(res)
+      localStorage.setItem('token',res);
+    })
   }
 
 }
