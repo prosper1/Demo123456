@@ -8,7 +8,11 @@ import { Component, OnInit } from '@angular/core';
 export class RanksComponent implements OnInit {
   ranks = [{
     id:0,
-    name: "",
+    name: "Bloedmall taxi rank",
+    main_image:""
+  },{
+    id:0,
+    name: "Bosman taxi rank",
     main_image:""
   }]
   constructor() { }

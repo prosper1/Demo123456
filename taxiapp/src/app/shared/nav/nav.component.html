@@ -1,31 +1,27 @@
 <div class="main-headers">
     <div class="container">
-        <nav class="navbar navbar-dark bg-dark">
-            <!-- Navbar content -->
-          </nav>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark main-nav">
-            <div class="container-fluid">
-              <a class="navbar-brand" href="#">IFindTaxi</a>
-              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-              </button>
-              <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                  
-                  <li *ngIf="!isLoggedIn" class="nav-item">
-                    <a class="nav-link active" aria-current="page" routerLink="/login">login</a>
-                  </li>
-                  <li *ngIf="!isLoggedIn" class="nav-item">
-                    <a class="nav-link" routerLink="/register">Register</a>
-                  </li>
-                  <li *ngIf="isLoggedIn" class="nav-item">
-                    <button class="btn btn-primary btn-block rounded-xl h-100" (click)="logout()">Logout</button>
-                  </li>
-                </ul>
-                
-                </div>
+      <nav class="navbar navbar-expand-lg navbar-dark main-nav">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">IFindTaxi</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <!-- <form class="d-flex" data-bs-toggle="collapse">
+            <input class="form-control me-2" type="search"  placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success" type="submit">Search</button>
+          </form> -->
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+           
+            
             </div>
-          </nav>
+          <a *ngIf="!isLoggedIn" routerLink="/login" class="btn btn-light rounded-xl" type="submit" data-bs-toggle="modal" href="#exampleModalToggle">Login<i class="fas fa-user-circle"></i></a>
+          <a *ngIf="!isLoggedIn" routerLink="/register" class="btn btn-light rounded-xl" type="submit" data-bs-toggle="modal" href="#exampleModalToggle">register<i class="fas fa-user-circle"></i></a>
+          <button *ngIf="isLoggedIn" class="btn btn-light rounded-xl" (click)="logout()">Logout<i class="fas fa-user-circle"></i></button>
+          <button *ngIf="isLoggedIn" class="btn btn-light rounded-xl" type="submit" data-bs-toggle="modal" href="#exampleModalToggle"><i class="fas fa-bars">Logout</i><i class="fas fa-user-circle"></i></button>
+          
+        </div>
+      </nav>
+        
 
     </div>
     
