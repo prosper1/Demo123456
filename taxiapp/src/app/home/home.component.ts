@@ -80,7 +80,7 @@ featuredProducts= [];
       }
     };
 
-    this.router.navigate(['rank-list/'], navigationExtras);
+    this.router.navigate(['ranks/'], navigationExtras);
   }
 
 }

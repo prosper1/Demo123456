@@ -59,13 +59,13 @@ export class TaxiranksService {
     );
   }
 
-  search(name: string, brand: string, category: string,q: string,city: string, startDate: string, endDate: string): Observable<any>{
-    return this.http.get(`${apiUrl}/cars/list/?search=${q}&name=${name}&brand=${brand}&city=${city}&bookings__start_date__gte=${startDate}&bookings__end_date__lte=${endDate}`, httpOptions).pipe(
+  search(q: string): Observable<any>{
+    return this.http.get(`${apiUrl}ranks/?search=${q}`, httpOptions).pipe(
       tap(_ => console.log('search complete'))
     );
   }
 
-  addCar(car: object): Observable<any>{
+  addDriver(car: object): Observable<any>{
     return this.http.post(apiUrl + '/cars/add-car/', car, httpOptions).pipe(
       tap(_ => console.log('added car'))
     );

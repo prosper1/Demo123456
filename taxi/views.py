@@ -2,10 +2,10 @@ from telnetlib import STATUS
 from django.shortcuts import render, HttpResponse
 from rest_framework.views import APIView
 from rest_framework import viewsets
-from .models import Driver, Rank,Taxi
+from .models import Driver, Rank, RankingTaxis,Taxi
 from rest_framework.response import Response
 from rest_framework import status
-from .serializers import DriverSerializer, RankSerializer, TaxiSerializer, UserDetailsSerializer
+from .serializers import DriverSerializer, RankSerializer, RankingTaxisSerializer, TaxiSerializer, UserDetailsSerializer
 from rest_framework.filters import SearchFilter
 from django_filters.rest_framework import DjangoFilterBackend
 from django.contrib.auth import authenticate, get_user_model
@@ -22,7 +22,7 @@ from rest_framework.generics import GenericAPIView, RetrieveUpdateAPIView
 class RankViewSet(viewsets.ModelViewSet):
     serializer_class = RankSerializer
     queryset = Rank.objects.all().order_by('-id')
-    filter_backends = (DjangoFilterBackend,)
+    filter_backends = (DjangoFilterBackend, SearchFilter)
     filter_fields = (
         'name',
         'ranking_taxis__destination'
@@ -30,7 +30,7 @@ class RankViewSet(viewsets.ModelViewSet):
 
     search_fields = [
         'name',
-        'ranking_taxis__destination',
+        'ranking_taxis__destination__name'
     ]
 
 
@@ -42,6 +42,16 @@ class TaxiViewSet(viewsets.ModelViewSet):
         'manufature',
         'model'
     ) 
+
+class RankingViewSet(viewsets.ModelViewSet):
+    serializer_class = RankingTaxisSerializer
+    authentication_classes = [
+        BasicAuthentication,
+        TokenAuthentication,
+        SessionAuthentication,
+    ]
+    queryset = RankingTaxis.objects.all()
+   
 
 
 class UserDetailsView(RetrieveUpdateAPIView):

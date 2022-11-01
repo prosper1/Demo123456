@@ -12,11 +12,11 @@ export class RankListComponent implements OnInit {
   ranks = [{
     id:0,
     name: "Bloedmall taxi rank",
-    main_image:""
+    ranking_taxis: ""
   },{
     id:0,
     name: "Bosman taxi rank",
-    main_image:""
+    ranking_taxis: ""
   }]
   constructor(
     private router: Router,
@@ -28,16 +28,26 @@ export class RankListComponent implements OnInit {
         const newObj = this.router.getCurrentNavigation()?.extras.state
         this.searchData = newObj?.q
         this.ranks = this.searchData
+
+        this.search()
       }
     });
     
   }
 
   ngOnInit(): void {
+  
   }
 
   goto(rankId:number){
 
   }
+  search(){
+    this.taxiService.search(this.searchData[0]).subscribe(
+      data => {
+        this.ranks = data;
+      });
+  }
+  
 
 }

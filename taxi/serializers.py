@@ -24,12 +24,7 @@ class TaxiSerializer(serializers.ModelSerializer):
         ]
 
 class RankSerializer(serializers.ModelSerializer):
-    ranking_taxis = serializers.HyperlinkedRelatedField(
-        view_name='rank-detail',
-        lookup_field='destination',
-        many=True,
-        read_only=True
-    )
+    ranking_taxis = serializers.StringRelatedField()
     
     class Meta:
         model = Rank
@@ -37,6 +32,16 @@ class RankSerializer(serializers.ModelSerializer):
             'id',
             'name',
             'ranking_taxis',
+        ]
+
+
+class RankingTaxisSerializer(serializers.ModelSerializer):
+    
+    class Meta:
+        model = RankingTaxis
+        fields = [
+            'taxi',
+            'destination',
         ]
 
 
