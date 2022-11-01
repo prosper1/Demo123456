@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { AuthenticationService } from 'src/app/_services/authentication.service';
 
 @Component({
   selector: 'app-nav',
@@ -11,7 +12,8 @@ export class NavComponent implements OnInit {
   isLoggedIn = false
   constructor(
     private toastr: ToastrService,
-    private router:Router) { }
+    private router:Router,
+    private authService: AuthenticationService) { }
   
   ngOnInit(): void {
     if( localStorage.getItem('token') != null){
@@ -29,5 +31,7 @@ export class NavComponent implements OnInit {
     this.toastr.success('You are successfully logged out','Great')
     this.router.navigate([''])
   }
+
+ 
 
 }
