@@ -3,7 +3,7 @@
     <br><br>
   <h1 class="h3 mb-3 fw-normal">Sign Up as Driver</h1>
   <p>You must be legal to drive commercially.</p>
-  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()" *ngIf="!isLoggedIn">
     <div class="form-floating">
       <input type="text" class="form-control" formControlName="username"  [ngClass]="{ 'is-invalid': submitted && f.username.errors }" id="floatingInput" placeholder="username">
       <label for="floatingInput">Username</label>
@@ -47,4 +47,6 @@
   
     
   </form>
+  <button *ngIf="isLoggedIn" class="w-100 btn btn-lg btn-outline-secondary rounded-xl" (click)="addAsDriver()">Confirm</button>
+  
   </div>

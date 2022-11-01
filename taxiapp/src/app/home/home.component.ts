@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -47,17 +48,39 @@ export class HomeComponent implements OnInit {
   }
 
 ]
-  constructor() { }
+
+q = {
+  from: '',
+  to: '',
+};
+cartItems = 1;
+showing = 0;
+productId: any;
+featuredProducts= [];
+  constructor(
+    private router: Router,
+  ) { }
 
   ngOnInit(): void {
   }
 
-  search(){
-
-  }
 
   goto(taxi_id:number){
 
+  }
+
+  search(): void {
+    const navigationExtras: NavigationExtras = {
+      state: {
+        q: [
+          this.q.from,
+          this.q.to,
+          
+        ]
+      }
+    };
+
+    this.router.navigate(['rank-list/'], navigationExtras);
   }
 
 }

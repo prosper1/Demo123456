@@ -70,6 +70,12 @@ export class AuthenticationService {
     );
   }
 
+  addDriver(driverObj: object): Observable<any>{
+    return this.http.post(apiUrl + 'driver/', driverObj, httpOptions).pipe(
+      tap(_ => console.log('added car'))
+    );
+  }
+
 
   usernameExist(username:string): Observable<any> {
     return this.http.get(apiUrl + 'api/cars/validate-username/'+ username + '/',httpOptions).pipe(

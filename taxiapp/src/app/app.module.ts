@@ -18,6 +18,7 @@ import { ListComponent } from './taxis/list/list.component';
 import { TripsComponent } from './trips/trips.component';
 import { LoadsComponent } from './loads/loads.component';
 import { RankDetailsComponent } from './rank-details/rank-details.component';
+import { RankListComponent } from './rank-list/rank-list.component';
 
 
 @NgModule({
@@ -34,6 +35,7 @@ import { RankDetailsComponent } from './rank-details/rank-details.component';
     TripsComponent,
     LoadsComponent,
     RankDetailsComponent,
+    RankListComponent,
   ],
   imports: [
     BrowserModule,

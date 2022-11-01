@@ -90,14 +90,39 @@ export class RegisterDriverComponent implements OnInit {
     .subscribe(res => {
       this.toastr.success('Updated User', '.....');
       console.log(res);
+      
+    }, err => {
+      console.log(err);
+      this.toastr.error('Registration failes','Oopsie!!! something going wrong with your registration')
+      console.log("gdgdgdg");
+       this.loading = false;
+    });
+  }
+
+  addAsDriver(){
+   console.log
+    if( localStorage.getItem('token') != null){
+      this.isLoggedIn = true;
+      if( localStorage.getItem('user') != null){
+        const from_storage = localStorage.getItem('user')
+        console.log(from_storage)
+        const userId = JSON.parse(from_storage??'')
+        const driverInfo = {
+          id: userId.id
+        }
+        this.authService.addDriver(driverInfo).subscribe(res => {
+      this.toastr.success('Updated driver', '.....');
+      console.log(res);
       this.router.navigate([''])
     }, err => {
       console.log(err);
       this.toastr.error('Registration failes','Oopsie!!! something going wrong with your registration')
       console.log("gdgdgdg");
-
        this.loading = false;
     });
+      }
+    }
+    
   }
 
 }

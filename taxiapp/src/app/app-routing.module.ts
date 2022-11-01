@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { RankDetailsComponent } from './rank-details/rank-details.component';
+import { RankListComponent } from './rank-list/rank-list.component';
 import { RanksComponent } from './ranks/ranks.component';
 import { RegisterDriverComponent } from './register-driver/register-driver.component';
 import { RegisterComponent } from './register/register.component';
@@ -16,6 +17,8 @@ const routes: Routes = [
   {path: 'rank', component: RanksComponent},
   {path: 'rank-details/:id', component: RankDetailsComponent},
   {path: 'taxi/:id', component: ListComponent},
+  {path: 'ranks', component: RankListComponent},
+
 ];
 
 @NgModule({

@@ -25,7 +25,13 @@ class RankViewSet(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend,)
     filter_fields = (
         'name',
-    ) 
+        'ranking_taxis__destination'
+    )
+
+    search_fields = [
+        'name',
+        'ranking_taxis__destination',
+    ]
 
 
 class TaxiViewSet(viewsets.ModelViewSet):
@@ -78,10 +84,10 @@ class DriverViewSet(viewsets.ModelViewSet):
         TokenAuthentication,
         SessionAuthentication,
     ]
-    filter_fields = (
-        'manufature',
-        'model'
-    ) 
+    
+
+    # def get_queryset(self):
+    #     return self.request.user.accounts.all()
 
 
 def api(request):

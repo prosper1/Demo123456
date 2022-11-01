@@ -3,7 +3,7 @@ from django.db import models
 from django.contrib.auth import authenticate, get_user_model
 from django.db.models import fields
 from rest_framework import serializers
-from .models import Taxi, Rank, Destination, RankingTaxis
+from .models import Driver, Taxi, Rank, Destination, RankingTaxis
 from drf_extra_fields.fields import Base64ImageField, Base64FileField
 from django.conf import settings
 
@@ -24,6 +24,12 @@ class TaxiSerializer(serializers.ModelSerializer):
         ]
 
 class RankSerializer(serializers.ModelSerializer):
+    ranking_taxis = serializers.HyperlinkedRelatedField(
+        view_name='rank-detail',
+        lookup_field='destination',
+        many=True,
+        read_only=True
+    )
     
     class Meta:
         model = Rank
@@ -83,7 +89,7 @@ class UserDetailsSerializer(serializers.ModelSerializer):
 
 class DriverSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Taxi
+        model = Driver
         fields = [
             'id',
             'user',

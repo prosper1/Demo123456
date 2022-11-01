@@ -44,7 +44,7 @@ class RankingTaxis(models.Model):
     destination = models.ForeignKey(Destination,on_delete=models.CASCADE)
 
     def __str__(self) -> str:
-        return self.taxi.model
+        return self.taxi.model + ' >> ' + self.destination.name
 
 class Rank(models.Model):
     name = models.CharField(max_length=200)
