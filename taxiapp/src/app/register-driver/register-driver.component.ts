@@ -72,6 +72,7 @@ export class RegisterDriverComponent implements OnInit {
       localStorage.setItem('token', res.key);
       this.isLoggedIn = this.authService.isLoggedIn
       this.toastr.success('Registration successful', 'wow, thats a snap! ');
+      this.updateUser(userInfo)
       console.log(res);
     }, err => {
       console.log(err);
@@ -81,7 +82,7 @@ export class RegisterDriverComponent implements OnInit {
        this.loading = false;
     });
 
-    this.updateUser(userInfo)
+    
   }
 
   updateUser(userInfo:object){

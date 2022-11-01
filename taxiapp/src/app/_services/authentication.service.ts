@@ -56,7 +56,7 @@ export class AuthenticationService {
   }
 
   updateUser(userInfo:object){
-    const url = apiUrl + 'api/auth/user/';
+    const url = apiUrl + 'user/';
     return this.http.patch(url, userInfo, httpOptions).pipe(
       tap(_ => this.isLoggedIn = true),
       catchError(this.handleError('register', []))
@@ -64,7 +64,7 @@ export class AuthenticationService {
   }
  
   user(): Observable<any> {
-    return this.http.get(apiUrl + 'api/auth/user/',httpOptions).pipe(
+    return this.http.get(apiUrl + 'user/',httpOptions).pipe(
       tap(_ => console.log('got user')),
       catchError(this.handleError('register', []))
     );

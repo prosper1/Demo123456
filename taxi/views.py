@@ -2,10 +2,10 @@ from telnetlib import STATUS
 from django.shortcuts import render, HttpResponse
 from rest_framework.views import APIView
 from rest_framework import viewsets
-from .models import Rank,Taxi
+from .models import Driver, Rank,Taxi
 from rest_framework.response import Response
 from rest_framework import status
-from .serializers import RankSerializer, TaxiSerializer, UserDetailsSerializer
+from .serializers import DriverSerializer, RankSerializer, TaxiSerializer, UserDetailsSerializer
 from rest_framework.filters import SearchFilter
 from django_filters.rest_framework import DjangoFilterBackend
 from django.contrib.auth import authenticate, get_user_model
@@ -38,7 +38,6 @@ class TaxiViewSet(viewsets.ModelViewSet):
     ) 
 
 
-
 class UserDetailsView(RetrieveUpdateAPIView):
     """
     Reads and updates UserModel fields
@@ -67,6 +66,22 @@ class UserDetailsView(RetrieveUpdateAPIView):
         django-rest-swagger
         """
         return get_user_model().objects.none()
+
+
+class DriverViewSet(viewsets.ModelViewSet):
+    serializer_class = DriverSerializer
+    queryset = Driver.objects.all().order_by('-id')
+    filter_backends = (DjangoFilterBackend,)
+    permission_classes = (IsAuthenticated,)
+    authentication_classes = [
+        BasicAuthentication,
+        TokenAuthentication,
+        SessionAuthentication,
+    ]
+    filter_fields = (
+        'manufature',
+        'model'
+    ) 
 
 
 def api(request):

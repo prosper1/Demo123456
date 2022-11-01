@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { AuthenticationService } from 'src/app/_services/authentication.service';
+import { ViewChild, ElementRef} from '@angular/core';
 
 @Component({
   selector: 'app-nav',
@@ -9,7 +10,12 @@ import { AuthenticationService } from 'src/app/_services/authentication.service'
   styleUrls: ['./nav.component.css']
 })
 export class NavComponent implements OnInit {
+  @ViewChild('closeAddExpenseModal')
+  closeAddExpenseModal!: ElementRef;
   isLoggedIn = false
+  user = {
+    username: ""
+  }
   constructor(
     private toastr: ToastrService,
     private router:Router,
@@ -18,6 +24,11 @@ export class NavComponent implements OnInit {
   ngOnInit(): void {
     if( localStorage.getItem('token') != null){
       this.isLoggedIn = true;
+      if( localStorage.getItem('user') != null){
+        const from_storage = localStorage.getItem('user')
+        console.log(from_storage)
+        this.user = JSON.parse(from_storage??'')
+      }
     }
   }
 
@@ -29,6 +40,7 @@ export class NavComponent implements OnInit {
     sessionStorage.clear()
     this.isLoggedIn = false
     this.toastr.success('You are successfully logged out','Great')
+    this.closeAddExpenseModal.nativeElement.click()
     this.router.navigate([''])
   }
 

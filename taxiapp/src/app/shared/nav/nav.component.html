@@ -16,8 +16,8 @@
             </div>
           <a *ngIf="!isLoggedIn" routerLink="/login" class="btn btn-light rounded-xl" type="submit" data-bs-toggle="modal" href="#exampleModalToggle">Login<i class="fas fa-user-circle"></i></a>
           <a *ngIf="!isLoggedIn" routerLink="/register" class="btn btn-light rounded-xl" type="submit" data-bs-toggle="modal" href="#exampleModalToggle">register<i class="fas fa-user-circle"></i></a>
-          <button *ngIf="isLoggedIn" class="btn btn-light rounded-xl" (click)="logout()">Logout<i class="fas fa-user-circle"></i></button>
-          <button *ngIf="isLoggedIn" class="btn btn-light rounded-xl" type="submit" data-bs-toggle="modal" href="#exampleModalToggle"><i class="fas fa-bars">Logout</i><i class="fas fa-user-circle"></i></button>
+          
+          <button *ngIf="isLoggedIn" class="btn btn-light rounded-xl" type="submit" data-bs-toggle="modal" href="#exampleModalToggle"><i class="fas fa-bars">{{user.username}}</i><i class="fas fa-user-circle"></i></button>
           
         </div>
       </nav>
@@ -26,3 +26,30 @@
     </div>
     
 </div>
+
+<!-- modals -->
+<div class="container">
+
+  <div class="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+  <div class="modal-dialog modal-dialog">
+  <div class="modal-content">
+  <div class="modal-body">
+    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" #closeAddExpenseModal></button>
+    <hr>
+    you are logged in as {{user.username}}<br>
+    <hr>
+    <button *ngIf="isLoggedIn" class="btn btn-light rounded-xl" (click)="logout()">Logout<i class="fas fa-user-circle"></i></button>
+    
+
+  </div>
+  
+  </div>
+  </div>
+  </div>
+  
+    
+  
+  </div>
+  
+    
+    

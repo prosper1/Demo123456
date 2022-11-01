@@ -66,6 +66,7 @@ export class RegisterComponent implements OnInit {
       this.isLoggedIn = this.authService.isLoggedIn
       this.toastr.success('Registration successful', 'wow, thats a snap! ');
        console.log(res);
+       this.user()
        this.router.navigate([''])
     }, err => {
       console.log(err);
@@ -74,6 +75,13 @@ export class RegisterComponent implements OnInit {
 
        this.loading = false;
     });
+  }
+
+  user(): void {
+    this.authService.user().subscribe(res => {
+      console.log(res)
+      localStorage.setItem('user',JSON.stringify(res))
+    })
   }
 
 }

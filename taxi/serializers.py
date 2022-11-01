@@ -80,3 +80,14 @@ class UserDetailsSerializer(serializers.ModelSerializer):
         fields = ('pk', *extra_fields)
         read_only_fields = ('email',)
 
+
+class DriverSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Taxi
+        fields = [
+            'id',
+            'user',
+            'driver_cellphone',
+            'driver_registrationID',
+            'driver_homeaddress'
+        ]
