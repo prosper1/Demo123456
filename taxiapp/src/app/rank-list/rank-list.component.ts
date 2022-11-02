@@ -9,6 +9,7 @@ import { TaxiranksService } from '../_services/taxiranks.service';
 })
 export class RankListComponent implements OnInit {
   searchData = []
+  message = "Recommended Taxi Ranks"
   ranks = [{
     id:0,
     name: "Bloedmall taxi rank",
@@ -46,6 +47,7 @@ export class RankListComponent implements OnInit {
     this.taxiService.search(this.searchData[0]).subscribe(
       data => {
         this.ranks = data;
+        this.message = "Result Of Taxi ranks you should use."
       });
   }
   
