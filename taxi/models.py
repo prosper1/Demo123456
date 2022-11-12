@@ -43,7 +43,7 @@ class RankingTaxis(models.Model):
     taxi = models.ForeignKey(Taxi,on_delete=models.CASCADE)
     destination = models.ForeignKey(Destination,on_delete=models.CASCADE)
     position = models.CharField(max_length=20)
-    price = models.DecimalField()
+    price = models.DecimalField(decimal_places=2,max_digits=5)
 
     def __str__(self) -> str:
         return self.taxi.model + ' >> ' + self.destination.name
@@ -60,4 +60,5 @@ class paymentMethod(models.Model):
     pay_user = models.ForeignKey(User,on_delete=models.CASCADE)
     pay_option = models.CharField(max_length=200)
     pay_taxi = models.ForeignKey(Taxi,on_delete=models.CASCADE)
+    price = models.DecimalField(decimal_places=2,max_digits=5)
 
