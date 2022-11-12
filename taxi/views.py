@@ -37,7 +37,7 @@ class RankViewSet(viewsets.ModelViewSet):
 class TaxiViewSet(viewsets.ModelViewSet):
     serializer_class = TaxiSerializer
     queryset = Taxi.objects.all().order_by('-id')
-    filter_backends = (DjangoFilterBackend,)
+    filter_backends = (DjangoFilterBackend, SearchFilter)
     filter_fields = (
         'manufature',
         'model'

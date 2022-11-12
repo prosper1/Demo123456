@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { AgmCoreModule } from '@agm/core';
+import { GooglePlaceModule } from 'ngx-google-places-autocomplete'; 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -19,6 +20,11 @@ import { TripsComponent } from './trips/trips.component';
 import { LoadsComponent } from './loads/loads.component';
 import { RankDetailsComponent } from './rank-details/rank-details.component';
 import { RankListComponent } from './rank-list/rank-list.component';
+import { MatGoogleMapsAutocompleteModule } from '@angular-material-extensions/google-maps-autocomplete';
+import { SuccessfulComponent } from './pay/successful/successful.component';
+import { UnsuccessfulComponent } from './pay/unsuccessful/unsuccessful.component';
+import { PassengerListComponent } from './driver/passenger-list/passenger-list.component';
+import { ProfileComponent } from './driver/profile/profile.component';
 
 
 @NgModule({
@@ -36,6 +42,10 @@ import { RankListComponent } from './rank-list/rank-list.component';
     LoadsComponent,
     RankDetailsComponent,
     RankListComponent,
+    SuccessfulComponent,
+    UnsuccessfulComponent,
+    PassengerListComponent,
+    ProfileComponent,
   ],
   imports: [
     BrowserModule,
@@ -48,6 +58,12 @@ import { RankListComponent } from './rank-list/rank-list.component';
     ),
     FormsModule,
     ReactiveFormsModule,
+    GooglePlaceModule,
+    MatGoogleMapsAutocompleteModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyDB1U3Pe1Kdd-D88F2ZRi1_jCYP7Hif9fU',
+      libraries: ['places']
+    }),
     ToastNoAnimationModule.forRoot(),
   ],
   providers: [

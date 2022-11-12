@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, NavigationExtras } from '@angular/router';
 import { TaxiranksService } from '../_services/taxiranks.service';
 
 @Component({
@@ -19,6 +19,9 @@ export class RankListComponent implements OnInit {
     name: "Bosman taxi rank",
     ranking_taxis: ""
   }]
+  title = 'My first AGM project';
+  lat =-25.731340;
+  lng = 28.218370;
   constructor(
     private router: Router,
     private route: ActivatedRoute,
@@ -40,8 +43,14 @@ export class RankListComponent implements OnInit {
   
   }
 
-  goto(rankId:number){
-
+  goto(id: any): void {
+    const filteredCars = this.ranks.filter(car => car.id === id);
+    const navigationExtras: NavigationExtras = {
+      state: {
+        car: filteredCars[0]
+      }
+    };
+    this.router.navigate(['taxi', 1], navigationExtras);
   }
   search(){
     this.taxiService.search(this.searchData[0]).subscribe(

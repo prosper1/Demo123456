@@ -31,11 +31,13 @@ class RankSerializer(serializers.ModelSerializer):
         fields = [
             'id',
             'name',
+            'location',
             'ranking_taxis',
         ]
 
 
 class RankingTaxisSerializer(serializers.ModelSerializer):
+    
     
     class Meta:
         model = RankingTaxis

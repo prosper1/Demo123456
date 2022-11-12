@@ -42,12 +42,15 @@ class Destination(models.Model):
 class RankingTaxis(models.Model):
     taxi = models.ForeignKey(Taxi,on_delete=models.CASCADE)
     destination = models.ForeignKey(Destination,on_delete=models.CASCADE)
+    position = models.CharField(max_length=20)
+    price = models.DecimalField()
 
     def __str__(self) -> str:
         return self.taxi.model + ' >> ' + self.destination.name
 
 class Rank(models.Model):
     name = models.CharField(max_length=200)
+    location = models.CharField(max_length = 200)
     ranking_taxis = models.ManyToManyField(RankingTaxis)
 
     def __str__(self) -> str:

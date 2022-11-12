@@ -7,12 +7,18 @@
               <form (ngSubmit)="search()">
                 <div class="row">
                   <div class="col-lg-5 d-flex align-items-center form-group">
-                    <input class="form-control border-0 shadow-0" type="text" [(ngModel)]="q.from" placeholder="Where to get ride?" name="from">
+                    <input class="form-control border-0 shadow-0" matInput
+                    matGoogleMapsAutocomplete
+                    (onAutocompleteSelected)="onAutocompleteSelected($event)"
+                    (onLocationSelected)="onLocationSelected($event)"  type="text" [(ngModel)]="q.from" placeholder="Where to get ride?" name="from">
                     <!-- <input class="form-control border-0 shadow-0" type="text" [(ngModel)]="q.search" name='search' placeholder="What are you searching for?"> -->
                   </div>
                  
                   <div class="col-lg-5 d-flex align-items-center form-group">
-                    <input class="form-control border-0 shadow-0" type="text" [(ngModel)]="q.to" placeholder="Where are you going?" name="to">
+                    <input class="form-control border-0 shadow-0" matInput
+                    matGoogleMapsAutocomplete
+                    (onAutocompleteSelected)="onAutocompleteToSelected($event)"
+                    (onLocationSelected)="onLocationToSelected($event)" type="text" [(ngModel)]="q.to" placeholder="Where are you going?" name="to">
                       <!-- <input class="form-control border-0 shadow-0" matInput [matDatepicker]="picker1" [(ngModel)]="q.startDate" name="startDate" placeholder="Start date">
                       <!-- <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle> -->
                       <!-- <mat-datepicker #picker1></mat-datepicker>            --> 

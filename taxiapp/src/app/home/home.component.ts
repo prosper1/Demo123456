@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
+import { Address } from 'ngx-google-places-autocomplete/objects/address';
+import {Location, Appearance, GermanAddress} from '@angular-material-extensions/google-maps-autocomplete';
+import PlaceResult = google.maps.places.PlaceResult;
 
 @Component({
   selector: 'app-home',
@@ -7,6 +10,10 @@ import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+  isApiLoaded = false;
+  options: any = {
+    componentRestrictions: { country: 'IN' }
+  }
   ranks = [
     {
         "id":0,
@@ -57,6 +64,15 @@ cartItems = 1;
 showing = 0;
 productId: any;
 featuredProducts= [];
+newAddress=''
+  latitude: number = 0.0000000;
+  longitude: number = 0.000000;
+ 
+  public appearance = Appearance;
+  public zoom: number = 10;
+  
+  selectedAddress?: PlaceResult;
+
   constructor(
     private router: Router,
   ) { }
@@ -81,6 +97,38 @@ featuredProducts= [];
     };
 
     this.router.navigate(['ranks/'], navigationExtras);
+  }
+
+  handleAddressChange(address: Address) {
+    console.log(address.formatted_address)
+    console.log(address.geometry.location.lat())
+    console.log(address.geometry.location.lng())
+  }
+
+  onAutocompleteSelected(result: PlaceResult) {
+    console.log('onAutocompleteSelected: ', result);
+    this.q.from = result.name
+  }
+
+  onLocationSelected(location: Location) {
+    console.log('onLocationSelected: ', location);
+    this.latitude = location.latitude;
+    this.longitude = location.longitude;
+  }
+
+  onAutocompleteToSelected(result: PlaceResult) {
+    console.log('onAutocompleteSelected: ', result);
+    this.q.to = result.name
+  }
+
+  onLocationToSelected(location: Location) {
+    console.log('onLocationSelected: ', location);
+    this.latitude = location.latitude;
+    this.longitude = location.longitude;
+  }
+
+  onGermanAddressMapped($event: GermanAddress) {
+    console.log('onGermanAddressMapped', $event);
   }
 
 }
