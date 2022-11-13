@@ -87,7 +87,7 @@ export class TaxiranksService {
   }
 
 
-  bookCar(bookingData: object): Observable<any>{
+  payTaxi(bookingData: object): Observable<any>{
     return this.http.post(`${apiUrl}/cars/add-booking/`, bookingData, httpOptions).pipe(
       tap(_ => console.log('added car'))
     );

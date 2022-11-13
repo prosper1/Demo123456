@@ -25,6 +25,7 @@ import { SuccessfulComponent } from './pay/successful/successful.component';
 import { UnsuccessfulComponent } from './pay/unsuccessful/unsuccessful.component';
 import { PassengerListComponent } from './driver/passenger-list/passenger-list.component';
 import { ProfileComponent } from './driver/profile/profile.component';
+import { FooterComponent } from './shared/footer/footer.component';
 
 
 @NgModule({
@@ -46,6 +47,7 @@ import { ProfileComponent } from './driver/profile/profile.component';
     UnsuccessfulComponent,
     PassengerListComponent,
     ProfileComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,

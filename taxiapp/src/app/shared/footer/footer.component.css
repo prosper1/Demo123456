@@ -1,0 +1,41 @@
+/*-------------------------------FOOTER---------------------------*/
+
+.margin-top-5 {
+    margin-top: 5%;
+}
+
+.footer-headers{
+	color: #ffffff;
+	font-size:30px;
+	font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin-bottom: 2px;
+}
+
+/*.mb-4{
+margin-bottom: 0px;
+}*/
+
+.footer-container{
+	background-color: #1d1d1d;
+}
+
+.mb-3{
+    border: 0;
+    height: 0.2px; /* Firefox... */
+    box-shadow: 0 1px 5px 1px white;
+    margin-bottom: 8px;
+    width: 150px;
+}
+
+.input-group{
+    margin-top: 30px;
+}
+
+.btn{
+    color:white;
+    background-color: #d9534f;
+}
+.btn:hover{
+    background-color: #000;
+    color: #fff;
+}
