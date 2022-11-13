@@ -40,7 +40,8 @@ class RankViewSet(viewsets.ModelViewSet):
 
     search_fields = [
         'name',
-        'ranking_taxis__destination__name'
+        'ranking_taxis__destination__name',
+        'location'
     ]
 
 
