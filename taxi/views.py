@@ -3,10 +3,17 @@ from django.views.decorators.csrf import csrf_exempt
 from rest_framework.views import APIView
 from rest_framework import viewsets
 from django.http.response import JsonResponse
-from .models import Driver, Rank, RankingTaxis,Taxi
+from .models import Driver, Rank, RankingTaxis,Taxi,PaymentMethod
 from rest_framework.response import Response
 from rest_framework import status
-from .serializers import DriverSerializer, RankSerializer, RankingTaxisSerializer, TaxiSerializer, UserDetailsSerializer
+from .serializers import (
+    DriverSerializer,
+    RankSerializer,
+    RankingTaxisSerializer,
+    TaxiSerializer,
+    UserDetailsSerializer,
+    PaymentSerializer
+)
 from rest_framework.filters import SearchFilter
 from django_filters.rest_framework import DjangoFilterBackend
 from django.contrib.auth import authenticate, get_user_model
@@ -146,3 +153,20 @@ def get_places(request,lat,lng):
 
     print(response)
     return JsonResponse(data=response)
+
+
+class PaymentViewSet(viewsets.ModelViewSet):
+    serializer_class = DriverSerializer
+    queryset = PaymentMethod.objects.all().order_by('-id')
+    filter_backends = (DjangoFilterBackend,)
+    permission_classes = (IsAuthenticated,)
+    authentication_classes = [
+        BasicAuthentication,
+        TokenAuthentication,
+        SessionAuthentication,
+    ]
+    
+
+    def get_queryset(self):
+        driver = self.request.user
+        return PaymentMethod.objects.filter(pay_taxi__driver__user=driver)

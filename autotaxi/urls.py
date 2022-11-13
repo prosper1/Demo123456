@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from taxi.views import api, RankViewSet, TaxiViewSet, UserDetailsView,DriverViewSet, PlacesView,get_places
+from taxi.views import api, RankViewSet, TaxiViewSet, UserDetailsView,DriverViewSet, PlacesView,get_places,PaymentViewSet
 from rest_framework.routers import DefaultRouter
 
 
@@ -23,6 +23,7 @@ api_urls = DefaultRouter()
 api_urls.register('ranks', RankViewSet)
 api_urls.register('taxi', TaxiViewSet)
 api_urls.register('drivers', DriverViewSet)
+api_urls.register('paid-passengers',PaymentViewSet)
 
 
 urlpatterns = [

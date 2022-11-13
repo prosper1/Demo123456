@@ -58,7 +58,7 @@ class Rank(models.Model):
     def __str__(self) -> str:
         return self.name
 
-class paymentMethod(models.Model):
+class PaymentMethod(models.Model):
     pay_user = models.ForeignKey(User,on_delete=models.CASCADE)
     pay_option = models.CharField(max_length=200)
     pay_taxi = models.ForeignKey(Taxi,on_delete=models.CASCADE)

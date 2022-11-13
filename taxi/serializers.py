@@ -3,7 +3,7 @@ from django.db import models
 from django.contrib.auth import authenticate, get_user_model
 from django.db.models import fields
 from rest_framework import serializers
-from .models import Driver, Taxi, Rank, Destination, RankingTaxis
+from .models import Driver, Taxi, Rank, Destination, RankingTaxis, PaymentMethod
 from drf_extra_fields.fields import Base64ImageField, Base64FileField
 from django.conf import settings
 
@@ -24,6 +24,23 @@ class TaxiSerializer(serializers.ModelSerializer):
             'driver',
         ]
 
+
+class RankingTaxisSerializer(serializers.ModelSerializer):
+    taxi = serializers.HyperlinkedRelatedField(
+        many=True,
+        read_only=True,
+        view_name='taxi-detail'
+    )
+    
+    class Meta:
+        model = RankingTaxis
+        fields = [
+            'taxi',
+            'destination',
+            'main_position',
+            'second_position',
+        ]
+
 class RankSerializer(serializers.ModelSerializer):
     ranking_taxis = serializers.StringRelatedField()
     
@@ -36,18 +53,6 @@ class RankSerializer(serializers.ModelSerializer):
             'ranking_taxis',
         ]
 
-
-class RankingTaxisSerializer(serializers.ModelSerializer):
-    
-    
-    class Meta:
-        model = RankingTaxis
-        fields = [
-            'taxi',
-            'destination',
-            'main_position',
-            'second_position',
-        ]
 
 
 class UserSerializers(serializers.ModelSerializer):
@@ -107,4 +112,16 @@ class DriverSerializer(serializers.ModelSerializer):
             'driver_registrationID',
             'driver_homeaddress',
             'driver_face_card'
+        ]
+
+
+class PaymentSerializer(serializers.ModelSerializer):
+    pay_user = serializers.StringRelatedField()
+    class Meta:
+        model = PaymentMethod
+        fields = [
+            "pay_user",
+            "pay_option",
+            "pay_taxi",
+            "price"
         ]
