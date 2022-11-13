@@ -28,6 +28,7 @@ export class RegisterDriverComponent implements OnInit {
       email: ['', [ Validators.required, Validators.email]],
       lastName: ['', [ Validators.required]],
       firstName: ['', [ Validators.required]],
+      regNo: ['', [ Validators.required]],
       password: ['', [ Validators.required]],
       password2: ['', [ Validators.required]]
     });
@@ -90,6 +91,7 @@ export class RegisterDriverComponent implements OnInit {
     .subscribe(res => {
       this.toastr.success('Updated User', '.....');
       console.log(res);
+      localStorage.setItem('user', JSON.stringify(res));
       
     }, err => {
       console.log(err);
@@ -100,20 +102,23 @@ export class RegisterDriverComponent implements OnInit {
   }
 
   addAsDriver(){
-   console.log
-    if( localStorage.getItem('token') != null){
+   console.log("llll")
+    if( localStorage.getItem('token')){
       this.isLoggedIn = true;
-      if( localStorage.getItem('user') != null){
+      if( localStorage.getItem('user')){
         const from_storage = localStorage.getItem('user')
-        console.log(from_storage)
         const userId = JSON.parse(from_storage??'')
+        console.log(userId)
         const driverInfo = {
-          id: userId.id
+          user: Number(userId.pk),
+          driver_registrationID: this.f.regNo.value,
+          driver_homeaddress:'example-addres',
+          driver_cellphone:'examplecell'
         }
         this.authService.addDriver(driverInfo).subscribe(res => {
       this.toastr.success('Updated driver', '.....');
       console.log(res);
-      this.router.navigate([''])
+      this.router.navigate(['driver/passengers'])
     }, err => {
       console.log(err);
       this.toastr.error('Registration failes','Oopsie!!! something going wrong with your registration')

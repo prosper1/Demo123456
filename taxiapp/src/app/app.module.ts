@@ -74,6 +74,8 @@ import { FooterComponent } from './shared/footer/footer.component';
       useClass: TokenInterceptor,
       multi: true
     },
+    NavComponent,
+    FooterComponent,
   ],
   bootstrap: [AppComponent]
 })

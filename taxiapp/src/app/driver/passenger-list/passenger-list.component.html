@@ -1,1 +1,28 @@
-<p>passenger-list works!</p>
+<app-nav></app-nav>
+<section>
+    <br><br>
+    
+    <div class="container" id=""> 
+        <h3>{{message}}</h3>
+        <p>A list of passengers who has paid you</p>
+        <div class="row">
+    <div class="col-md-12">
+        <div *ngIf="paidPassenger">
+            <div *ngFor="let item of paidPassenger" class="card mb-3" style="max-width: 540px;">
+                <div class="row g-0">
+                <div class="col-md-7">
+                    <div class="card-body mxf">
+                    <h5 class="card-title"><i class="fa fa-user"></i>{{item.username}}</h5>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+       
+    </div>
+    <div class="col-md-6">
+        
+    </div>
+    </div>
+    </div>
+  </section>

@@ -65,8 +65,8 @@ export class TaxiranksService {
     );
   }
 
-  addDriver(car: object): Observable<any>{
-    return this.http.post(apiUrl + '/cars/add-car/', car, httpOptions).pipe(
+  addDriver(driverObj: object): Observable<any>{
+    return this.http.post(apiUrl + 'driver/', driverObj, httpOptions).pipe(
       tap(_ => console.log('added car'))
     );
   }

@@ -71,7 +71,7 @@ export class AuthenticationService {
   }
 
   addDriver(driverObj: object): Observable<any>{
-    return this.http.post(apiUrl + 'driver/', driverObj, httpOptions).pipe(
+    return this.http.post(apiUrl + 'drivers/', driverObj, httpOptions).pipe(
       tap(_ => console.log('added car'))
     );
   }
@@ -84,6 +84,9 @@ export class AuthenticationService {
     );
   }
 
+  isAuthenticated(){
+    return this.isLoggedIn;
+  }
 
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
