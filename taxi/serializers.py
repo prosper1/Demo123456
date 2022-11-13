@@ -20,7 +20,8 @@ class TaxiSerializer(serializers.ModelSerializer):
             'id',
             'model',
             'manufature',
-            'registration'
+            'registration',
+            'driver',
         ]
 
 class RankSerializer(serializers.ModelSerializer):
@@ -104,5 +105,6 @@ class DriverSerializer(serializers.ModelSerializer):
             'user',
             'driver_cellphone',
             'driver_registrationID',
-            'driver_homeaddress'
+            'driver_homeaddress',
+            'driver_face_card'
         ]

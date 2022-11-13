@@ -19,8 +19,9 @@ class Driver(models.Model):
     driver_registrationID = models.CharField(max_length=30)
     driver_cellphone = models.CharField(max_length=200)
     driver_homeaddress = models.CharField(max_length=200)
+    driver_face_card = models.ImageField(upload_to='images/', default='pic_folder/None/no-img.png', verbose_name='face-pic')
 
-#edited this
+
 class Taxi(models.Model):
     registration = models.CharField(max_length=200)
     manufature = models.CharField(max_length=200)
