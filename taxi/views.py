@@ -25,6 +25,7 @@ from rest_framework.authentication import (
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.generics import GenericAPIView, RetrieveUpdateAPIView
 import json
+import requests
 
 # Create your views here.
 
@@ -121,7 +122,7 @@ class PlacesView(APIView):
     def post(self, request, *args, **kwargs):
         lat = request.data['lat']
         lng = request.data['lng']
-        url = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=' + lat +',' +lng+ '&types=sublocality&radius=40000&key=AIzaSyBqCDnIcScKQYqh_L496sRnZd2n4Ql0ymo'
+        url = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=' + lat +',' +lng+ '&types=sublocality&radius=40000&key=AIzaSyDB1U3Pe1Kdd-D88F2ZRi1_jCYP7Hif9fU'
         places = requests.get(url).content
 
         places_json = json.loads(places)
@@ -139,7 +140,7 @@ def get_places(request,lat,lng):
     """
     Uses google places api to fetch nearby place
     """
-    url = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=' + lat +',' +lng+ 'type=postal_town&radius=40000&key=AIzaSyBqCDnIcScKQYqh_L496sRnZd2n4Ql0ymo'
+    url = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=' + lat +',' +lng+ 'type=postal_town&radius=40000&key=AIzaSyDB1U3Pe1Kdd-D88F2ZRi1_jCYP7Hif9fU'
     places = requests.get(url).content
 
     places_json = json.loads(places)
