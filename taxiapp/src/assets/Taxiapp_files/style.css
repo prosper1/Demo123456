@@ -1,0 +1,161 @@
+/* style.css by gundo prosper */
+
+.main-headers{
+    display: block;
+    float: none;
+    background-color: #000000;
+}
+
+.main-nav{
+    background-color: #000000;
+}
+
+.main-banner {
+    background: url(../image-8.webp) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    min-height: 80vh;
+    color: rgb(255, 255, 255);
+}
+
+.banner-overlay{
+    background: rgba(124, 124, 124, 0.226);
+    z-index: 2;
+    background-size: cover;
+    min-height: 80vh;
+}
+
+.na-link {
+    box-sizing: border-box;
+    display: flex;
+    float: none;
+    position: static;
+    z-index: auto;
+}
+
+.search-bar {
+    border-radius: 10rem;
+    background: #fff;
+    box-shadow: 0 0 1rem rgba(0,0,0,0.15);
+    min-height: 30px;
+}
+
+.search-bar {
+    border-radius: 10rem;
+    background: #fff;
+    box-shadow: 0 0 1rem rgba(0,0,0,0.15);
+    min-height: 30px;
+}
+
+
+.rounded-xl {
+    border-radius: 10rem;
+}
+
+.btn {
+    letter-spacing: .3em;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.search-bar .input-label-absolute-right .label-absolute {
+    right: 0;
+}
+.input-label-absolute-right .label-absolute {
+    right: .7rem;
+}
+.label-absolute {
+    position: absolute;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+    color: #868e96;
+}
+
+label {
+    display: inline-block;
+    margin-bottom: .5rem;
+}
+*, ::before, ::after {
+    box-sizing: border-box;
+}
+
+@media screen and (max-width: 991px) {
+    .search-bar {
+    border-radius: 2rem;
+    }
+    .search-bar .input-label-absolute-right .label-absolute {
+        right: 5;
+        border-bottom-width: 1px;
+        border-bottom-style: dashed;
+    }
+    .input-label-absolute-right .label-absolute {
+        right: auto;
+    }
+  }
+.text-white {
+    color: #fff !important;
+}
+
+.pl-lg-4, .px-lg-4 {
+    padding-left: 1.5rem !important;
+}
+.search-bar .form-group {
+    position: relative;
+    margin-bottom: 0;
+}
+.align-items-center {
+    -ms-flex-align: center !important;
+    align-items: center !important;
+}
+.d-flex {
+    display: -ms-flexbox !important;
+    display: flex !important;
+}
+.p-lg-1 {
+    padding: .25rem !important;
+        padding-left: 0.25rem;
+}
+.p-3 {
+    padding: 1rem !important;
+}
+
+.margin-0{
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.btn-form {
+    color: #ced4da;
+    border-color: #ced4da;
+    color: #495057;
+    border: none;
+    font-size: 1rem;
+    text-transform: none;
+    font-weight: normal;
+    letter-spacing: normal;
+    width: 100%;
+}
+
+.btn-form .dropdown-toggle {
+    position: relative;
+    width: 100%;
+    z-index: 1;
+    text-align: right;
+    white-space: nowrap;
+}
+
+
+/* explore nearby */
+
+.explore-nearby {
+    margin-top: 5%;
+}
+
+/* categories */
+
+.categories {
+    margin-top: 5%;
+}
