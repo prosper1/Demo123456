@@ -42,7 +42,8 @@ class Destination(models.Model):
 class RankingTaxis(models.Model):
     taxi = models.ForeignKey(Taxi,on_delete=models.CASCADE)
     destination = models.ForeignKey(Destination,on_delete=models.CASCADE)
-    position = models.CharField(max_length=20)
+    main_position = models.CharField(max_length=20)
+    second_position = models.CharField(max_length=20)
     price = models.DecimalField(decimal_places=2,max_digits=5)
 
     def __str__(self) -> str:

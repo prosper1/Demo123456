@@ -44,6 +44,8 @@ class RankingTaxisSerializer(serializers.ModelSerializer):
         fields = [
             'taxi',
             'destination',
+            'main_position',
+            'second_position',
         ]
 
 

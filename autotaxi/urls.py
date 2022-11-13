@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from taxi.views import api, RankViewSet, TaxiViewSet, UserDetailsView,DriverViewSet
+from taxi.views import api, RankViewSet, TaxiViewSet, UserDetailsView,DriverViewSet, PlacesView,get_places
 from rest_framework.routers import DefaultRouter
 
 
@@ -32,5 +32,7 @@ urlpatterns = [
     # path('accounts/', include('allauth.urls')),
     path('api/auth/', include('dj_rest_auth.urls')),
     path('api/auth/registration/', include('dj_rest_auth.registration.urls')),
+    path('get-places/<slug:lat>/<slug:lng>/', get_places,name='get_places'),
+    path('places/', PlacesView.as_view(), name='place')
 
 ]
