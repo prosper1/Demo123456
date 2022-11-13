@@ -2,6 +2,7 @@ from telnetlib import STATUS
 from django.shortcuts import render, HttpResponse
 from rest_framework.views import APIView
 from rest_framework import viewsets
+from django.http.response import JsonResponse
 from .models import Driver, Rank, RankingTaxis,Taxi
 from rest_framework.response import Response
 from rest_framework import status
@@ -16,6 +17,7 @@ from rest_framework.authentication import (
 )
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.generics import GenericAPIView, RetrieveUpdateAPIView
+import json
 
 # Create your views here.
 
@@ -102,3 +104,45 @@ class DriverViewSet(viewsets.ModelViewSet):
 
 def api(request):
     return HttpResponse(content={"user":"gundo"},status=200)
+
+
+class PlacesView(APIView):
+    """
+    Uses google places api to fetch nearby place
+    """
+    @csrf_exempt
+    def post(self, request, *args, **kwargs):
+        lat = request.data['lat']
+        lng = request.data['lng']
+        url = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=' + lat +',' +lng+ '&types=sublocality&radius=40000&key=AIzaSyBqCDnIcScKQYqh_L496sRnZd2n4Ql0ymo'
+        places = requests.get(url).content
+
+        places_json = json.loads(places)
+
+        print(places_json)
+        """Check username availability"""
+        response = {
+            'data': places_json['results'],
+            
+        }
+        return JsonResponse(data=response)
+
+
+def get_places(request,lat,lng):
+    """
+    Uses google places api to fetch nearby place
+    """
+    url = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=' + lat +',' +lng+ 'type=postal_town&radius=40000&key=AIzaSyBqCDnIcScKQYqh_L496sRnZd2n4Ql0ymo'
+    places = requests.get(url).content
+
+    places_json = json.loads(places)
+
+    print(places_json)
+    """Check username availability"""
+    response = {
+        'data': places_json['results'],
+        
+    }
+
+    print(response)
+    return JsonResponse(data=response)
