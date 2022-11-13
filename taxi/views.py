@@ -1,5 +1,5 @@
-from telnetlib import STATUS
 from django.shortcuts import render, HttpResponse
+from django.views.decorators.csrf import csrf_exempt
 from rest_framework.views import APIView
 from rest_framework import viewsets
 from django.http.response import JsonResponse
