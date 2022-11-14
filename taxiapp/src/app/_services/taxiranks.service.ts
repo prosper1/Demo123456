@@ -81,14 +81,14 @@ export class TaxiranksService {
       lat: lat,
       lng: lng
     }
-    return this.http.post<any>(apiUrl +'/cars/places/',newlocation,httpOptions).pipe(
+    return this.http.post<any>(apiUrl +'places/',newlocation,httpOptions).pipe(
       tap(_ => console.log('got near'))
     );
   }
 
 
   payTaxi(bookingData: object): Observable<any>{
-    return this.http.post(`${apiUrl}/cars/add-booking/`, bookingData, httpOptions).pipe(
+    return this.http.post(`${apiUrl}/paid-passenger/`, bookingData, httpOptions).pipe(
       tap(_ => console.log('added car'))
     );
   }

@@ -11,7 +11,8 @@
 }
 
 .main-banner {
-    background: url(../image-8.webp) no-repeat center center fixed;
+    background: url(../bg.jpeg) no-repeat center center fixed;
+    /* background-color: #67A0D4; */
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;

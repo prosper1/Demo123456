@@ -29,6 +29,8 @@ export class RegisterDriverComponent implements OnInit {
       lastName: ['', [ Validators.required]],
       firstName: ['', [ Validators.required]],
       regNo: ['', [ Validators.required]],
+      homeAddress: ['', [ Validators.required]],
+      cellphone: ['', [ Validators.required]],
       password: ['', [ Validators.required]],
       password2: ['', [ Validators.required]]
     });
@@ -112,8 +114,8 @@ export class RegisterDriverComponent implements OnInit {
         const driverInfo = {
           user: Number(userId.pk),
           driver_registrationID: this.f.regNo.value,
-          driver_homeaddress:'example-addres',
-          driver_cellphone:'examplecell'
+          driver_homeaddress:this.f.homeAddress.value,
+          driver_cellphone:this.f.cellphone.value
         }
         this.authService.addDriver(driverInfo).subscribe(res => {
       this.toastr.success('Updated driver', '.....');
