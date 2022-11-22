@@ -119,7 +119,9 @@ export class RegisterDriverComponent implements OnInit {
         }
         this.authService.addDriver(driverInfo).subscribe(res => {
       this.toastr.success('Updated driver', '.....');
+      localStorage.setItem('driver', JSON.stringify(res));
       console.log(res);
+      
       this.router.navigate(['driver/passengers'])
     }, err => {
       console.log(err);

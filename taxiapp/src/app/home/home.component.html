@@ -37,7 +37,7 @@
            
 
            <button (click)="getLocation()" class="btn btn-block btn-dark rounded-xl">Browse Rank</button>
-           <a class="btn btn-block btn-dark rounded-xl"  routerLink="/register-driver">Drive and Earn</a>
+           <a *ngIf="!isLoggedIn" class="btn btn-block btn-dark rounded-xl"  routerLink="/register-driver">Sign Up As Driver</a>
       </div>
       
     </div>

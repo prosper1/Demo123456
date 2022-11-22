@@ -19,6 +19,7 @@ export class LoginComponent implements OnInit {
   isLoggedIn = false;
   submittedR = false;
   state = '';
+  username = ""
 
   constructor(
     private formBuilder: FormBuilder,
@@ -60,7 +61,6 @@ export class LoginComponent implements OnInit {
       localStorage.setItem('token',token);
       if (token){
         this.isLoggedIn = this.authService.isLoggedIn
-        this.toastr.success('Login successful', 'Welcome back!!!! Great ');
         this.user()
         this.router.navigate([''])
       }
@@ -81,7 +81,26 @@ export class LoginComponent implements OnInit {
   user(): void {
     this.authService.user().subscribe(res => {
       console.log(res)
+      this.username = res.username
+      const loginMessage = 'Welcome back ' + res.username + ' Great'
+        this.toastr.success('Login successful', loginMessage);
       localStorage.setItem('user',JSON.stringify(res))
+    })
+  }
+
+  asDriver(): void {
+    this.authService.getDriver().subscribe(res => {
+      console.log(res)
+      
+
+      if(res.length === 0){
+        this.router.navigate([''])
+      }
+      else{
+        localStorage.setItem('driver',JSON.stringify(res))
+        this.router.navigate(['/driver/passengers'])
+      }
+      
     })
   }
 

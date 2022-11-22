@@ -74,7 +74,10 @@ featuredProducts= [];
 newAddress=''
   latitude: number = 0.0000000;
   longitude: number = 0.000000;
- 
+  isLoggedIn = false
+  user = {
+    username: ""
+  }
   public appearance = Appearance;
   public zoom: number = 10;
   
@@ -152,6 +155,18 @@ places = [
   ]
 
   ngOnInit(): void {
+    if( localStorage.getItem('token') != null){
+      this.isLoggedIn = true;
+      if( localStorage.getItem('user') != null){
+        const from_storage = localStorage.getItem('user')
+        console.log(from_storage)
+        this.user = JSON.parse(from_storage??'')
+        this.isLoggedIn = true
+      }
+      if( localStorage.getItem('driver') != null){
+        this.router.navigate(['driver/passengers'])
+      }
+    }
   }
 
 
@@ -165,7 +180,6 @@ places = [
         q: [
           this.q.from,
           this.q.to,
-          
         ]
       }
     };
@@ -213,6 +227,24 @@ places = [
       this.taxiService.nearByPlaces(this.lat.toString(),this.lng.toString()).subscribe(res => {
         localStorage.setItem('nearby',JSON.stringify(res.data))
         this.placesData = res.data
+        if(res.data){
+          let name = this.placesData[0].name;
+          const name_chunks = name.split(" ");
+          this.q.from = name_chunks[0];
+          this.q.to = name_chunks[0];
+
+          const navigationExtras: NavigationExtras = {
+            state: {
+              q: [
+                this.q.from,
+                this.q.to,
+                
+              ]
+            }
+          };
+      
+          this.router.navigate(['ranks/'], navigationExtras);
+        }
         let count = 0;
         this.places = []
         for(let place of this.placesData){
@@ -228,6 +260,24 @@ places = [
         localStorage.setItem('nearby',JSON.stringify(res.data))
         this.placesData = res.data
         let count = 0;
+        if(res.data){
+          let name = this.placesData[0].name;
+          const name_chunks = name.split(" ");
+          this.q.from = name_chunks[0];
+          this.q.to = name_chunks[0];
+
+          const navigationExtras: NavigationExtras = {
+            state: {
+              q: [
+                this.q.from,
+                this.q.to,
+                
+              ]
+            }
+          };
+      
+          this.router.navigate(['ranks/'], navigationExtras);
+        }
         for(let place of this.placesData){
           let n = Math.floor((Math.random() * 3) + 1)
           this.places.push({name:place.name,src:this.images[n],distance:'50'})

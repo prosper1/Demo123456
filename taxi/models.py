@@ -58,6 +58,16 @@ class Rank(models.Model):
     def __str__(self) -> str:
         return self.name
 
+
+class TaxiStatus(models.Model):
+    taxi = models.OneToOneField(Taxi, on_delete=models.CASCADE)
+    is_active = models.BooleanField(default=False)
+    is_loading = models.BooleanField(default=False)
+
+    def __str__(self) -> str:
+        return self.taxi.manufature + self.taxi.model
+
+
 class PaymentMethod(models.Model):
     pay_user = models.ForeignKey(User,on_delete=models.CASCADE)
     pay_option = models.CharField(max_length=200)

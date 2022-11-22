@@ -2,8 +2,15 @@
 <section>
     <br><br>
     
-    <div class="container" id=""> 
+    <div  class="container" id=""> 
         <h3>{{message}}</h3>
+
+        <div *ngIf="status">
+            <br>
+            <p>you need to search again.</p>
+            <a routerLink="/" class="btn1 btn-lg btn-block btn-danger" style="padding-left: 30px; padding-right: 30px;">Home Page</a>
+                     
+        </div>
         <div class="row">
     <div class="col-md-6">
         <div *ngIf="ranks">
@@ -33,6 +40,7 @@
         <div class="map">
             <agm-map [latitude]="lat" [longitude]="lng">
                 <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+                <agm-direction *ngIf="directions" [origin]="directions.origin" [destination]="directions.destination"></agm-direction>
               </agm-map>
         </div>
     </div>

@@ -72,7 +72,13 @@ export class AuthenticationService {
 
   addDriver(driverObj: object): Observable<any>{
     return this.http.post(apiUrl + 'drivers/', driverObj, httpOptions).pipe(
-      tap(_ => console.log('added car'))
+      tap(_ => console.log('added driver'))
+    );
+  }
+
+  getDriver(): Observable<any>{
+    return this.http.get(apiUrl + 'drivers/',httpOptions).pipe(
+      tap(_ => console.log('get driver'))
     );
   }
 
