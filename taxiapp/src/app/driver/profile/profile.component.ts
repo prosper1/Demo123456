@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+import { TaxiranksService } from 'src/app/_services/taxiranks.service';
 
 @Component({
   selector: 'app-profile',
@@ -6,7 +10,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
-
+  form: FormGroup;
   user = {
     pk:0,
     username:"",
@@ -16,9 +20,24 @@ export class ProfileComponent implements OnInit {
     last_login:""
   }
 
+  taxiId = 0
+
   its404 = false;
   
-  constructor() { }
+  constructor(
+    private formBuilder: FormBuilder,
+    private taxiService: TaxiranksService,
+    private toastr: ToastrService,
+    private route: ActivatedRoute,
+    private router: Router,) { 
+    this.form = this.formBuilder.group({
+      isActive: ['', [ Validators.required, Validators.email]],
+      isLoading: ['', [ Validators.required]]
+    });
+  }
+
+  
+
 
   ngOnInit(): void {
     if ( localStorage.getItem('user') != null){
@@ -27,6 +46,22 @@ export class ProfileComponent implements OnInit {
     else{
       this.its404 = true;
     }
+  }
+
+  get f() { return this.form.controls; }
+
+  onSubmit(){
+
+    const statusObj = {
+      taxi: this.taxiId,
+      is_active: this.f.isActive.value,
+      is_loading: this.f.isLoading.value,
+    }
+
+  }
+
+  taxiStatus(){
+    
   }
 
 }

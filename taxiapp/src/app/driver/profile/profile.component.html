@@ -44,9 +44,24 @@
                     <div class="bio-row">
                         <p><span>Registration </span>: xcxcxcxcxcxcx</p>
                     </div>
+                    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+                         <div class="checkbox mb-3">
+                           <label>
+                             <input type="checkbox" value="remember-me"> Activate Taxi (go online)
+                           </label>
+                         </div>
+                         <div class="checkbox mb-3">
+                            <label>
+                              <input type="checkbox" value="remember-me"> Taxi Loading (pick up)
+                            </label>
+                          </div>
+                         <button class="btn btn-lg btn-outline-secondary rounded-xl" type="submit">Update Status</button>
+                        
+                       </form>
                       <div class="bio-row">
                         <p><span>Last Login </span>: {{user.last_login}}</p>
                     </div>
+
                      
                   </div>
               </div>
