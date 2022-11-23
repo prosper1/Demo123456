@@ -27,6 +27,9 @@ export class RankListComponent implements OnInit {
       origin: { lat: 24.799448, lng: 120.979021 },
       destination: { lat: 24.799524, lng: 120.975017 }
     }
+
+  distance = 0
+  price = 0
   constructor(
     private router: Router,
     private route: ActivatedRoute,
@@ -37,9 +40,9 @@ export class RankListComponent implements OnInit {
         const newObj = this.router.getCurrentNavigation()?.extras.state
         this.searchData = newObj?.q
         this.ranks = this.searchData
-
         this.search()
         this.getDirection()
+        this.calculatePriceByDistance()
       }
     });
     
@@ -94,8 +97,20 @@ export class RankListComponent implements OnInit {
   }
 
 
-  async  getDirection() {
+  public  getDirection() {
     console.log(this.searchData)
     this.placeCoordinates(this.searchData[0],this.searchData[1])
+  }
+
+  calculatePriceByDistance(){
+    const locationsObj = {
+      origin:this.searchData[0],
+      destination: this.searchData[1]
+    }
+    this.taxiService.distance(locationsObj).subscribe(
+      data => {
+        this.price = (data.rows.elements.distance.value / 1000 ) * 2 //why not 50c-60-70??
+
+      });
   }
 }

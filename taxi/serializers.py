@@ -3,7 +3,7 @@ from django.db import models
 from django.contrib.auth import authenticate, get_user_model
 from django.db.models import fields
 from rest_framework import serializers
-from .models import Driver, Taxi, Rank, Destination, RankingTaxis, PaymentMethod
+from .models import Driver, Taxi, Rank, Destination, RankingTaxis, PaymentMethod, TaxiStatus
 from drf_extra_fields.fields import Base64ImageField, Base64FileField
 from django.conf import settings
 
@@ -117,6 +117,7 @@ class DriverSerializer(serializers.ModelSerializer):
 
 class PaymentSerializer(serializers.ModelSerializer):
     pay_user = serializers.StringRelatedField()
+
     class Meta:
         model = PaymentMethod
         fields = [
@@ -124,4 +125,21 @@ class PaymentSerializer(serializers.ModelSerializer):
             "pay_option",
             "pay_taxi",
             "price"
+        ]
+
+
+
+class TaxiStatusSerializers(serializers.ModelSerializer):
+    taxi = serializers.HyperlinkedRelatedField(
+        many=False,
+        read_only=True,
+        view_name='taxi-detail'
+    )
+
+    class Meta:
+        model = TaxiStatus
+        fields = [
+            "taxi",
+            "is_active",
+            "is_loading"
         ]

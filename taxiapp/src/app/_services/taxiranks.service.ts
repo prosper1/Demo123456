@@ -89,21 +89,14 @@ export class TaxiranksService {
 
   payTaxi(bookingData: object): Observable<any>{
     return this.http.post(`${apiUrl}/paid-passenger/`, bookingData, httpOptions).pipe(
-      tap(_ => console.log('added car'))
+      tap(_ => console.log('pay taxi'))
     );
   }
 
-  bookings(userId: string, ownerId: string): Observable<any> {
-    return this.http.get(`${apiUrl}/cars/bookings/?booking_user=${userId}&car__owner=${ownerId}`, httpOptions).pipe(
-      tap(_ => console.log('fetch products'))
+  distance(distanceObj:object){
+    return this.http.post<any>(apiUrl +'distance/',distanceObj,httpOptions).pipe(
+      tap(_ => console.log('got distance'))
     );
   }
-
-  newsletter(newsletter: object): Observable<any>{
-    return this.http.post(`${apiUrl}/cars/policy-and-newsletter/`, newsletter, httpOptions).pipe(
-      tap(_ => console.log('added car'))
-    );
-  }
-
 
 }

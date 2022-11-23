@@ -3,7 +3,7 @@ from django.views.decorators.csrf import csrf_exempt
 from rest_framework.views import APIView
 from rest_framework import viewsets
 from django.http.response import JsonResponse
-from .models import Driver, Rank, RankingTaxis,Taxi,PaymentMethod
+from .models import Driver, Rank, RankingTaxis,Taxi,PaymentMethod, TaxiStatus
 from rest_framework.response import Response
 from rest_framework import status
 from .serializers import (
@@ -156,6 +156,46 @@ def get_places(request,lat,lng):
     print(response)
     return JsonResponse(data=response)
 
+@csrf_exempt
+def get_km(request,origin,destination):
+    """
+    Uses google places api to fetch nearby place
+    """
+    url = 'https://maps.googleapis.com/maps/api/distancematrix/json?origins=' + origin + '&destinations=' + destination + '&units=kilometer&key=AIzaSyDB1U3Pe1Kdd-D88F2ZRi1_jCYP7Hif9fU'
+    distance = requests.get(url).content
+    
+
+    distance_json = json.loads(distance)
+
+    """Check username availability"""
+    response = {
+        'data': distance_json,
+    }
+
+    print(response)
+    return JsonResponse(data=response)
+
+
+class DistanceView(APIView):
+    """
+    Uses google places api to fetch nearby place
+    """
+    @csrf_exempt
+    def post(self, request, *args, **kwargs):
+        origin = request.data['origin']
+        destination  = request.data['destination']
+        url = 'https://maps.googleapis.com/maps/api/distancematrix/json?origins=' + origin + '&destinations=' + destination + '&units=kilometer&key=AIzaSyDB1U3Pe1Kdd-D88F2ZRi1_jCYP7Hif9fU'
+        distance = requests.get(url).content
+    
+
+        distance_json = json.loads(distance)
+
+        """Check username availability"""
+        response = {
+            'data': distance_json,
+        }
+        return JsonResponse(data=response)
+
 
 class PaymentViewSet(viewsets.ModelViewSet):
     serializer_class = DriverSerializer
@@ -172,3 +212,18 @@ class PaymentViewSet(viewsets.ModelViewSet):
     def get_queryset(self):
         driver = self.request.user
         return PaymentMethod.objects.filter(pay_taxi__driver__user=driver)
+
+
+class TaxiStatusViewSet(viewsets.ModelViewSet):
+    serializer_class = TaxiSerializer
+    queryset = TaxiStatus.objects.all().order_by('-id')
+    filter_backends = (DjangoFilterBackend,)
+    permission_classes = (IsAuthenticated,)
+    authentication_classes = [
+        BasicAuthentication,
+        TokenAuthentication,
+        SessionAuthentication,
+    ]
+    
+
+    #modify post (gaurd from other taxi drivers from changing this)

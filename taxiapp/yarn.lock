@@ -1629,6 +1629,11 @@
     "@types/qs" "*"
     "@types/serve-static" "*"
 
+"@types/googlemaps@3.39.12":
+  version "3.39.12"
+  resolved "https://registry.yarnpkg.com/@types/googlemaps/-/googlemaps-3.39.12.tgz#2546b5256a6555f929e130866ee2ee72931062fc"
+  integrity sha512-z1RMvlQfmsLbg5kc0dGjSHK7DL64mOCbbtqp/Le2M3ov7xPB1d+stia38hqmOXw5dPO1dL/5fscn73d0uomkbw==
+
 "@types/googlemaps@^3.43.0", "@types/googlemaps@^3.43.3":
   version "3.43.3"
   resolved "https://registry.yarnpkg.com/@types/googlemaps/-/googlemaps-3.43.3.tgz#70cf962154a160fe78bcd69d6ccc296dd9175b1f"
@@ -1905,6 +1910,14 @@ aggregate-error@^3.0.0:
   dependencies:
     clean-stack "^2.0.0"
     indent-string "^4.0.0"
+
+agm-direction@^0.8.10:
+  version "0.8.10"
+  resolved "https://registry.yarnpkg.com/agm-direction/-/agm-direction-0.8.10.tgz#5b68d158d6d479f7fe95dbcc110c2616772ca678"
+  integrity sha512-Ef6MckknsLnpVirXTZ/SxNwXW9VPyJ9w85KdMaLv9mKOySdWkcZTsZjv7PmWDFX0ru4oUJZCBxSZ7kJdurcg9A==
+  dependencies:
+    "@types/googlemaps" "3.39.12"
+    tslib "^2.1.0"
 
 ajv-formats@2.1.1, ajv-formats@^2.1.1:
   version "2.1.1"
