@@ -227,3 +227,29 @@ class TaxiStatusViewSet(viewsets.ModelViewSet):
     
 
     #modify post (gaurd from other taxi drivers from changing this)
+
+class DriverTaxiStatusViewSet(viewsets.ModelViewSet):
+    serializer_class = TaxiSerializer
+    queryset = TaxiStatus.objects.all().order_by('-id')
+    filter_backends = (DjangoFilterBackend,)
+    permission_classes = (IsAuthenticated,)
+    authentication_classes = [
+        BasicAuthentication,
+        TokenAuthentication,
+        SessionAuthentication,
+    ]
+    
+
+    def get_queryset(self):
+        driver = self.request.user
+
+        status = TaxiStatus.objects.filter(taxi__driver__user=driver)
+
+        if not status:
+            taxi = Taxi.objects.filter(driver__user=driver)
+            if taxi:
+                taxi_status = TaxiStatus.objects.create(taxi=taxi)
+                taxi_status.save()
+                status = TaxiStatus.objects.filter(taxi__driver__user=driver)
+
+        return status
