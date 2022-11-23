@@ -27,6 +27,7 @@ import { PassengerListComponent } from './driver/passenger-list/passenger-list.c
 import { ProfileComponent } from './driver/profile/profile.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { AgmDirectionModule} from 'agm-direction';
+import { RideComponent } from './ride/ride.component';
 
 
 @NgModule({
@@ -49,6 +50,7 @@ import { AgmDirectionModule} from 'agm-direction';
     PassengerListComponent,
     ProfileComponent,
     FooterComponent,
+    RideComponent,
   ],
   imports: [
     BrowserModule,

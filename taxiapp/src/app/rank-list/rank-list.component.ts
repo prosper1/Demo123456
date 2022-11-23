@@ -109,7 +109,8 @@ export class RankListComponent implements OnInit {
     }
     this.taxiService.distance(locationsObj).subscribe(
       data => {
-        this.price = (data.rows.elements.distance.value / 1000 ) * 2 //why not 50c-60-70??
+        console.log(data.data.rows[0].elements)
+        this.price = (data.data.rows[0].elements[0].distance.value / 1000 ) * 2 //why not 50c-60-70??
 
       });
   }

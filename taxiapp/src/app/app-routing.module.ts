@@ -11,6 +11,7 @@ import { RankListComponent } from './rank-list/rank-list.component';
 import { RanksComponent } from './ranks/ranks.component';
 import { RegisterDriverComponent } from './register-driver/register-driver.component';
 import { RegisterComponent } from './register/register.component';
+import { RideComponent } from './ride/ride.component';
 import { ListComponent } from './taxis/list/list.component';
 import { AuthGuard } from './_services/auth.guard';
 
@@ -26,7 +27,8 @@ const routes: Routes = [
   {path: 'payment/success', component: SuccessfulComponent,canActivate:[AuthGuard]},
   {path: 'payment/failed', component: UnsuccessfulComponent,canActivate:[AuthGuard]},
   {path: 'driver/profile', component: ProfileComponent ,canActivate:[AuthGuard]},
-  {path: 'driver/passengers', component: PassengerListComponent,canActivate:[AuthGuard]}
+  {path: 'driver/passengers', component: PassengerListComponent,canActivate:[AuthGuard]},
+  {path: 'pay-ride/:id', component: RideComponent,canActivate:[AuthGuard]}
 ];
 
 @NgModule({
