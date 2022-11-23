@@ -51,7 +51,8 @@ class TaxiViewSet(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, SearchFilter)
     filter_fields = (
         'manufature',
-        'model'
+        'model',
+        'driver'
     ) 
 
 class RankingViewSet(viewsets.ModelViewSet):

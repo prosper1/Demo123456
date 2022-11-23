@@ -20,45 +20,6 @@ export class TaxiranksService {
     
   }
 
-
-  cars(
-    carFilters = {
-    name: '',
-    brand: '',
-    color: '',
-    category: '',
-    startDate: '',
-    endDate:'',
-    minPrice: '',
-    maxPrice: '',
-    city: '',
-    owner: ''
-
-
-  }): Observable<any> {
-    
-    console.log(carFilters.category)
-    if (carFilters.category.length > 0){
-      return this.http.get(
-        `${apiUrl}/cars/list/?name=${carFilters.name}&brand=${carFilters.brand}&is_verified=&color=${carFilters.color}&category=${carFilters.category}&bookings__start_date__gte=${carFilters.startDate}&bookings__start_date__lte=&bookings__end_date__gte=&bookings__end_date__lte=${carFilters.endDate}&price__gte=${carFilters.minPrice}&price__lte=${carFilters.maxPrice}&city=${carFilters.city}&owner=${carFilters.owner}`, httpOptions).pipe(
-        tap(_ => console.log('fetch products'))
-      );
-    }
-    else {
-      return this.http.get(
-        `${apiUrl}/cars/list/?name=${carFilters.name}&brand=${carFilters.brand}&is_verified=&color=${carFilters.color}&bookings__start_date__gte=${carFilters.startDate}&bookings__start_date__lte=&bookings__end_date__gte=&bookings__end_date__lte=${carFilters.endDate}&price__gte=${carFilters.minPrice}&price__lte=${carFilters.maxPrice}&city=${carFilters.city}&owner=${carFilters.owner}`, httpOptions).pipe(
-        tap(_ => console.log('fetch products'))
-      );
-    }
-    
-  }
-
-  carDetails(productID: any): Observable<any> {
-    return this.http.get(apiUrl + '/cars/list/' + productID + '/', httpOptions).pipe(
-      tap(_ => console.log('detailed'))
-    );
-  }
-
   search(q: string): Observable<any>{
     return this.http.get(`${apiUrl}ranks/?search=${q}`, httpOptions).pipe(
       tap(_ => console.log('search complete'))
@@ -67,7 +28,19 @@ export class TaxiranksService {
 
   addDriver(driverObj: object): Observable<any>{
     return this.http.post(apiUrl + 'driver/', driverObj, httpOptions).pipe(
-      tap(_ => console.log('added car'))
+      tap(_ => console.log('added user as driver'))
+    );
+  }
+
+  addTaxi(taxiObj: object): Observable<any>{
+    return this.http.post(apiUrl + 'taxi/', taxiObj, httpOptions).pipe(
+      tap(_ => console.log('added taxi'))
+    );
+  }
+
+  taxis(q: string): Observable<any>{
+    return this.http.get(`${apiUrl}taxi/?search=${q}`, httpOptions).pipe(
+      tap(_ => console.log('search complete'))
     );
   }
 
@@ -98,5 +71,6 @@ export class TaxiranksService {
       tap(_ => console.log('got distance'))
     );
   }
+
 
 }
