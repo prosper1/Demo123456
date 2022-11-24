@@ -254,7 +254,7 @@ class DriverTaxiStatusViewSet(viewsets.ModelViewSet):
         if not status:
             taxi = Taxi.objects.filter(driver__user=driver)
             if taxi:
-                taxi_status = TaxiStatus.objects.create(taxi=taxi)
+                taxi_status = TaxiStatus.objects.create(taxi=taxi[0])
                 taxi_status.save()
                 status = TaxiStatus.objects.filter(taxi__driver__user=driver)
 
