@@ -62,12 +62,20 @@ export class RegisterComponent implements OnInit {
 
     this.authService.register(auth)
     .subscribe(res => {
-      localStorage.setItem('token', res.key);
-      this.isLoggedIn = this.authService.isLoggedIn
-      this.toastr.success('Registration successful', 'wow, thats a snap! ');
-       console.log(res);
-       this.user()
-       this.router.navigate([''])
+      const token = res.key
+      if (token){
+        localStorage.setItem('token', res.key);
+        this.isLoggedIn = this.authService.isLoggedIn
+        this.toastr.success('Registration successful', 'wow, thats a snap! ');
+        console.log(res);
+        this.user()
+        this.router.navigate([''])
+      }
+
+      else{
+        this.toastr.error('Registration failed')
+      }
+      
     }, err => {
       console.log(err);
       this.toastr.error('Registration failes','Oopsie!!! something going wrong with your registration')

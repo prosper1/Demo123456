@@ -55,7 +55,7 @@ class TaxiViewSet(viewsets.ModelViewSet):
         'driver'
     ) 
 
-class RankingViewSet(viewsets.ModelViewSet):
+class RankingTaxisViewSet(viewsets.ModelViewSet):
     serializer_class = RankingTaxisSerializer
     authentication_classes = [
         BasicAuthentication,
@@ -63,6 +63,11 @@ class RankingViewSet(viewsets.ModelViewSet):
         SessionAuthentication,
     ]
     queryset = RankingTaxis.objects.all()
+    filter_backends = (DjangoFilterBackend, SearchFilter)
+
+    search_fields = [
+       'destination'
+    ]
    
 
 

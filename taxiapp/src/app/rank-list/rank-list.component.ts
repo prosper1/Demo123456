@@ -110,8 +110,15 @@ export class RankListComponent implements OnInit {
     this.taxiService.distance(locationsObj).subscribe(
       data => {
         console.log(data.data.rows[0].elements)
-        this.price = (data.data.rows[0].elements[0].distance.value / 1000 ) * 2 //why not 50c-60-70??
+        this.price =(data.data.rows[0].elements[0].distance.value / 1000 ) * 0.60 //why not 50c-60-70??
 
       });
+  }
+
+
+  filterRankingTaxis(){
+    const rankingTaxis = [{destination:""}]
+    var filtered = rankingTaxis.filter((ar: { destination: string; }) => ar.destination.split(" ")[0] === "MABOPANE")
+    console.log(filtered)
   }
 }

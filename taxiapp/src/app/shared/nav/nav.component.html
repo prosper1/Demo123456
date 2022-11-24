@@ -14,8 +14,8 @@
            
             
             </div>
-          <a *ngIf="!isLoggedIn" routerLink="/login" class="btn btn-light rounded-xl" type="submit" data-bs-toggle="modal" href="#exampleModalToggle">Login<i class="fas fa-user-circle"></i></a>
-          <a *ngIf="!isLoggedIn" routerLink="/register" class="btn btn-light rounded-xl" type="submit" data-bs-toggle="modal" href="#exampleModalToggle">register<i class="fas fa-user-circle"></i></a>
+          <a *ngIf="!isLoggedIn" routerLink="/login" class="btn btn-light rounded-xl">Login<i class="fas fa-user-circle"></i></a>
+          <a *ngIf="!isLoggedIn" routerLink="/register" class="btn btn-light rounded-xl" >register<i class="fas fa-user-circle"></i></a>
           
           <button *ngIf="isLoggedIn" class="btn btn-light rounded-xl" type="submit" data-bs-toggle="modal" href="#exampleModalToggle"><i class="fas fa-bars">{{user.username}}</i><i class="fas fa-user-circle"></i></button>
           

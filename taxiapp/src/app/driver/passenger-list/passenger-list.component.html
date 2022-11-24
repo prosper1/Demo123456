@@ -1,12 +1,34 @@
 <app-nav></app-nav>
 <section>
     <br><br>
+
     
     <div class="container" id=""> 
         <h3>{{message}}</h3>
-        <p>A list of passengers who has paid you</p>
+
+    <form *ngIf="!taxi" [formGroup]="form" (ngSubmit)="addTaxi()">
+        <p>You have not added a taxi. Add one to get started.</p>
+        <div class="form-floating">
+           <input type="text" class="form-control" formControlName="model"  [ngClass]="{ 'is-invalid': submitted && f.model.errors }" id="floatingInput" placeholder="johndoe">
+           <label for="floatingInput">model</label>
+         </div>
+         <div class="form-floating">
+           <input type="text" class="form-control" formControlName="manufacture" [ngClass]="{ 'is-invalid': submitted && f.manufacture.errors }" id="floatingmanufacture" placeholder="manufacture">
+           <label for="floatingmanufacture">manufacture</label>
+         </div>
+         <div class="form-floating">
+            <input type="text" class="form-control" formControlName="registration" [ngClass]="{ 'is-invalid': submitted && f.registration.errors }" id="floatingmanufacture" placeholder="registration">
+            <label for="floatingmanufacture">registration</label>
+          </div>
+     
+         <button class="w-100 btn btn-lg btn-outline-secondary rounded-xl" type="submit">ADD TAXI</button>
+        
+         
+       </form>
+
+        <p  *ngIf="taxi">A list of passengers who has paid you</p>
         <div class="row">
-    <div class="col-md-12">
+    <div *ngIf="taxi" class="col-md-12">
         <div *ngIf="paidPassenger">
             <div *ngFor="let item of paidPassenger" class="card mb-3" style="max-width: 540px;">
                 <div class="row g-0">

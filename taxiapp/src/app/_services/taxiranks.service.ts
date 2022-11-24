@@ -39,7 +39,7 @@ export class TaxiranksService {
   }
 
   taxis(q: string): Observable<any>{
-    return this.http.get(`${apiUrl}taxi/?search=${q}`, httpOptions).pipe(
+    return this.http.get(`${apiUrl}taxi/?driver=${q}`, httpOptions).pipe(
       tap(_ => console.log('search complete'))
     );
   }
@@ -69,6 +69,12 @@ export class TaxiranksService {
   distance(distanceObj:object){
     return this.http.post<any>(apiUrl +'distance/',distanceObj,httpOptions).pipe(
       tap(_ => console.log('got distance'))
+    );
+  }
+
+  driverTaxiStatus(): Observable<any>{
+    return this.http.get(apiUrl + 'driver-taxi-status/', httpOptions).pipe(
+      tap(_ => console.log('get taxi status'))
     );
   }
 

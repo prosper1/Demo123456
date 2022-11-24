@@ -27,7 +27,8 @@ from taxi.views import (
     TaxiStatusViewSet,
     get_km,
     DistanceView,
-    DriverTaxiStatusViewSet
+    DriverTaxiStatusViewSet,
+    RankingTaxisViewSet,
 )
 from rest_framework.routers import DefaultRouter
 
@@ -39,6 +40,7 @@ api_urls.register('drivers', DriverViewSet)
 api_urls.register('paid-passengers',PaymentViewSet)
 api_urls.register('taxi-status',TaxiStatusViewSet)
 api_urls.register('driver-taxi-status',DriverTaxiStatusViewSet)
+api_urls.register('ranking-taxis',RankingTaxisViewSet)
 
 
 urlpatterns = [
