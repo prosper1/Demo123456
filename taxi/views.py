@@ -12,7 +12,8 @@ from .serializers import (
     RankingTaxisSerializer,
     TaxiSerializer,
     UserDetailsSerializer,
-    PaymentSerializer
+    PaymentSerializer,
+    TaxiStatusSerializers
 )
 from rest_framework.filters import SearchFilter
 from django_filters.rest_framework import DjangoFilterBackend
@@ -235,7 +236,7 @@ class TaxiStatusViewSet(viewsets.ModelViewSet):
     #modify post (gaurd from other taxi drivers from changing this)
 
 class DriverTaxiStatusViewSet(viewsets.ModelViewSet):
-    serializer_class = TaxiSerializer
+    serializer_class = TaxiStatusSerializers
     queryset = TaxiStatus.objects.all().order_by('-id')
     filter_backends = (DjangoFilterBackend,)
     permission_classes = (IsAuthenticated,)
