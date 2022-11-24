@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
+import { TaxiranksService } from 'src/app/_services/taxiranks.service';
 
 @Component({
   selector: 'app-list',
@@ -16,14 +18,45 @@ export class ListComponent implements OnInit {
     name: "Quantum XYZ 123 GP",
     main_image:""
   }]
+
+  sharedData:any;
+  price = 0;
   myUrl = 'http://localhost:4200'
-  constructor() { }
+
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute,
+    private taxiService: TaxiranksService,
+  ) { 
+    this.route.queryParams.subscribe(params => {
+      if (this.router.getCurrentNavigation()?.extras.state) {
+        const result = this.router.getCurrentNavigation()?.extras.state?.taxis;
+        const priceResult = this.router.getCurrentNavigation()?.extras.state?.price;
+        this.sharedData = result;
+        this.price = priceResult;
+      }
+      else {
+        const carId = this.route.snapshot.params.id;
+        // this.carService.carDetails(carId).subscribe(data => {
+        //   this.sharedData = data;
+        //   this.total = this.sharedData.price + 15
+        // });
+      }
+      });
+    
+  }
 
   ngOnInit(): void {
   }
 
   goto(itemId:number){
-
+    console.log(this.price)
+    const navigationExtras: NavigationExtras = {
+      state: {
+        price: this.price
+      }
+    };
+    this.router.navigate(['pay-ride',1], navigationExtras);
   }
 
   submitForm() {
@@ -78,6 +111,10 @@ export class ListComponent implements OnInit {
   
     document.body.appendChild(form);
       form.submit();
+  }
+
+  taxis(){
+    
   }
 
 }

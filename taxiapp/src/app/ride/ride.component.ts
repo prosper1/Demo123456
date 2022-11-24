@@ -30,6 +30,22 @@ export class RideComponent implements OnInit {
       expireDate: ['', [ Validators.required]],
       ccv: ['', [ Validators.required]],
     });
+
+    this.route.queryParams.subscribe(params => {
+      if (this.router.getCurrentNavigation()?.extras.state) {
+        const result = this.router.getCurrentNavigation()?.extras.state?.taxis;
+        const priceResult = this.router.getCurrentNavigation()?.extras.state?.price;
+  
+        this.price = priceResult
+      }
+      else {
+        const carId = this.route.snapshot.params.id;
+        // this.carService.carDetails(carId).subscribe(data => {
+        //   this.sharedData = data;
+        //   this.total = this.sharedData.price + 15
+        // });
+      }
+      });
   }
 
   ngOnInit(): void {

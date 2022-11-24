@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, NavigationExtras } from '@angular/router';
+import { filter } from 'rxjs';
 import { TaxiranksService } from '../_services/taxiranks.service';
 
 @Component({
@@ -11,14 +12,43 @@ export class RankListComponent implements OnInit {
   searchData = []
   message = "Recommended Taxi Ranks"
   ranks = [{
-    id:0,
-    name: "Bloedmall taxi rank",
-    ranking_taxis: ""
-  },{
-    id:0,
-    name: "Bosman taxi rank",
-    ranking_taxis: ""
-  }]
+    "id": 0,
+    "name": "mtn rank",
+    "location": "JHB",
+    "ranking_taxis": [
+        {
+            "taxi": {
+                "id": 1,
+                "model": "xxxx",
+                "manufature": "xxxx",
+                "registration": "xxxxx",
+                "driver": 0
+            },
+            "destination": "xxxxxxxx",
+            "main_position": "EB40",
+            "second_position": "EB40"
+        }
+    ]
+  },
+  {
+    "id": 37,
+    "name": "wonderpark",
+    "location": "Pretoria",
+    "ranking_taxis": [
+        {
+            "taxi": {
+                "id": 1,
+                "model": "Quantum",
+                "manufature": "Toyota",
+                "registration": "xxxx-ddd",
+                "driver": 1
+            },
+            "destination": "MABOPANE TAXI RANK",
+            "main_position": "EB40",
+            "second_position": "EB40"
+        }
+    ]
+}]
   title = 'My first AGM project';
   lat =24.799448;
   lng = 120.979021;
@@ -53,10 +83,15 @@ export class RankListComponent implements OnInit {
   }
 
   goto(id: any): void {
-    const filteredCars = this.ranks.filter(car => car.id === id);
+    
+    const filteredRanks = this.ranks.filter(rank => rank.id === id);
+    console.log(filteredRanks[0].ranking_taxis)
+    var filtered = filteredRanks[0].ranking_taxis.filter((ar: { destination: string; }) => ar.destination.split(" ")[0].toLowerCase() === this.searchData[1]??''.toLowerCase())
+    console.log(filtered[0])
     const navigationExtras: NavigationExtras = {
       state: {
-        car: filteredCars[0]
+        taxis: filtered[0],
+        price: this.price
       }
     };
     this.router.navigate(['taxi', 1], navigationExtras);
@@ -110,8 +145,7 @@ export class RankListComponent implements OnInit {
     this.taxiService.distance(locationsObj).subscribe(
       data => {
         console.log(data.data.rows[0].elements)
-        this.price =(data.data.rows[0].elements[0].distance.value / 1000 ) * 0.60 //why not 50c-60-70??
-
+        this.price =Number(((data.data.rows[0].elements[0].distance.value / 1000 ) * 0.60).toFixed(2))
       });
   }
 

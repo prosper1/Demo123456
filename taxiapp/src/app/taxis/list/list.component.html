@@ -18,8 +18,8 @@
                         <a routerLink="/car-details/{{item.id}}">
                             <h5 class="card-title">{{item.name}}</h5>
                             <p class="card-text">Toyota</p>
-                            <p class="card-text"><small class="text-muted">R20</small></p>
-                            <button (click)="submitForm()" class="btn1 btn-lg btn-block btn-danger" style="padding-left: 30px; padding-right: 30px;">Pay taxi fair</button>
+                            <p class="card-text"><small class="text-muted">R{{price}}</small></p>
+                            <button (click)="goto(1)" class="btn1 btn-lg btn-block btn-danger" style="padding-left: 30px; padding-right: 30px;">Pay taxi fair</button>
                         </a>
                         </div>
                     </div>
