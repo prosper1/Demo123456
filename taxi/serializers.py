@@ -26,10 +26,9 @@ class TaxiSerializer(serializers.ModelSerializer):
 
 
 class RankingTaxisSerializer(serializers.ModelSerializer):
-    taxi = serializers.HyperlinkedIdentityField(
+    taxi = TaxiSerializer(
         many=False,
-        read_only=True,
-        view_name='taxi-detail'
+        read_only=True
     )
     destination = serializers.StringRelatedField()
     
@@ -145,6 +144,7 @@ class TaxiStatusSerializers(serializers.ModelSerializer):
     class Meta:
         model = TaxiStatus
         fields = [
+            "id",
             "taxi",
             "is_active",
             "is_loading"

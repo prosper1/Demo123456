@@ -23,6 +23,12 @@ export class ProfileComponent implements OnInit {
   taxiId = 0
 
   its404 = false;
+  taxiStatusData =  {
+    id: 0,
+    isActive: false,
+    isLoading:false,
+  }
+  taxi = false
   
   constructor(
     private formBuilder: FormBuilder,
@@ -31,7 +37,7 @@ export class ProfileComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,) { 
     this.form = this.formBuilder.group({
-      isActive: ['', [ Validators.required, Validators.email]],
+      isActive: ['', [ Validators.required]],
       isLoading: ['', [ Validators.required]]
     });
   }
@@ -61,7 +67,17 @@ export class ProfileComponent implements OnInit {
   }
 
   taxiStatus(){
-    
-  }
+    this.taxiService.driverTaxiStatus().subscribe(res => {
+      if(res.length > 0){
+        this.taxi = true
+        this.taxiStatusData = res
+      }
+ }, err => {
+   console.log(err);
+   this.toastr.error('add failes','Oopsie!!! something going wrong with our process')
+   console.log("gdgdgdg");
+ });
+   
+   }
 
 }
