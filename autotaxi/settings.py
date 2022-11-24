@@ -144,8 +144,8 @@ CORS_ALLOWED_ORIGINS = [
     "https://www.mtindustry.co.za",
     "http://www.mtindustry.co.za",
     "https://mtindustry.co.za",
-    "https://findtaxi.co.za/",
-    "https://www.findtaxi.co.za/"
+    "https://findtaxi.co.za",
+    "https://www.findtaxi.co.za"
 ]
 
 # Static files (CSS, JavaScript, Images)

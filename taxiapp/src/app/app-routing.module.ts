@@ -22,7 +22,7 @@ const routes: Routes = [
   {path: 'register-driver', component: RegisterDriverComponent},
   {path: 'rank', component: RanksComponent},
   {path: 'rank-details/:id', component: RankDetailsComponent},
-  {path: 'taxi/:id', component: ListComponent},
+  {path: 'taxi/:id', component: ListComponent,canActivate:[AuthGuard]},
   {path: 'ranks', component: RankListComponent},
   {path: 'payment/success', component: SuccessfulComponent,canActivate:[AuthGuard]},
   {path: 'payment/failed', component: UnsuccessfulComponent,canActivate:[AuthGuard]},
