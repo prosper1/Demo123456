@@ -9,7 +9,7 @@ import { TaxiranksService } from '../_services/taxiranks.service';
   styleUrls: ['./rank-list.component.css']
 })
 export class RankListComponent implements OnInit {
-  searchData = []
+  searchData = ["x",'x']
   message = "Recommended Taxi Ranks"
   ranks = [{
     "id": 0,
@@ -69,7 +69,6 @@ export class RankListComponent implements OnInit {
       if (this.router.getCurrentNavigation()?.extras.state) {
         const newObj = this.router.getCurrentNavigation()?.extras.state
         this.searchData = newObj?.q
-        this.ranks = this.searchData
         this.search()
         this.getDirection()
         this.calculatePriceByDistance()
@@ -83,14 +82,14 @@ export class RankListComponent implements OnInit {
   }
 
   goto(id: any): void {
-    
+    console.log(id)
     const filteredRanks = this.ranks.filter(rank => rank.id === id);
-    console.log(filteredRanks[0].ranking_taxis)
-    var filtered = filteredRanks[0].ranking_taxis.filter((ar: { destination: string; }) => ar.destination.split(" ")[0].toLowerCase() === this.searchData[1]??''.toLowerCase())
+    let filterPlace = this.searchData[1]??''
+    var filtered = filteredRanks[0].ranking_taxis.filter(ar => ar.destination.split(" ")[0].toLowerCase() === filterPlace.toLowerCase())
     console.log(filtered[0])
     const navigationExtras: NavigationExtras = {
       state: {
-        taxis: filtered[0],
+        taxis: filtered,
         price: this.price
       }
     };

@@ -9,14 +9,12 @@ import { TaxiranksService } from 'src/app/_services/taxiranks.service';
 })
 export class ListComponent implements OnInit {
   ranks = [{
-    id:0,
-    name: "Siyaya XYZ 123 GP",
-    main_image:""
-  },
-  {
-    id:0,
-    name: "Quantum XYZ 123 GP",
-    main_image:""
+    taxi:{
+      id:0,
+      model: "...loading",
+      manufacture:"...loading",
+      registration: "xxxx-ddd"
+    }
   }]
 
   sharedData:any;
@@ -32,11 +30,13 @@ export class ListComponent implements OnInit {
       if (this.router.getCurrentNavigation()?.extras.state) {
         const result = this.router.getCurrentNavigation()?.extras.state?.taxis;
         const priceResult = this.router.getCurrentNavigation()?.extras.state?.price;
-        this.sharedData = result;
+        this.ranks = result;
+        console.log(result)
         this.price = priceResult;
       }
       else {
         const carId = this.route.snapshot.params.id;
+        this.router.navigate(['']);
         // this.carService.carDetails(carId).subscribe(data => {
         //   this.sharedData = data;
         //   this.total = this.sharedData.price + 15
@@ -53,7 +53,8 @@ export class ListComponent implements OnInit {
     console.log(this.price)
     const navigationExtras: NavigationExtras = {
       state: {
-        price: this.price
+        price: this.price,
+        taxi: itemId
       }
     };
     this.router.navigate(['pay-ride',1], navigationExtras);
