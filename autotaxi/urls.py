@@ -29,6 +29,7 @@ from taxi.views import (
     DistanceView,
     DriverTaxiStatusViewSet,
     RankingTaxisViewSet,
+    EmailSendView,
 )
 from rest_framework.routers import DefaultRouter
 
@@ -53,5 +54,6 @@ urlpatterns = [
     path('get-places/<slug:lat>/<slug:lng>/', get_places,name='get_places'),
     path('places/', PlacesView.as_view(), name='place'),
     path('distance/', DistanceView.as_view(), name='distance'),
-    path('get-kms/', get_km, name='get_kms')
+    path('get-kms/', get_km, name='get_kms'),
+    path('email/', EmailSendView.as_view(), name='email-send'),
 ]

@@ -175,8 +175,14 @@ AUTHENTICATION_BACKENDS = [
     'allauth.account.auth_backends.AuthenticationBackend',
 ]
 
-
-
 import django_heroku
+
+EMAIL_BACKEND = "sendgrid_backend.SendgridBackend"
+SENDGRID_API_KEY = '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'
+SENDGRID_SANDBOX_MODE_IN_DEBUG = False
+EMAIL_PORT = 587
+EMAIL_USE_TLS = False
+
+DEFAULT_FROM_EMAIL = "noreply@findtaxi.co.za"
 
 django_heroku.settings(locals())

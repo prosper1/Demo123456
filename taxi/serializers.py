@@ -6,6 +6,9 @@ from rest_framework import serializers
 from .models import Driver, Taxi, Rank, Destination, RankingTaxis, PaymentMethod, TaxiStatus
 from drf_extra_fields.fields import Base64ImageField, Base64FileField
 from django.conf import settings
+import ssl
+
+ssl._create_default_https_context = ssl._create_unverified_context
 
 
 # Get the UserModel
@@ -82,6 +85,7 @@ class UserDetailsSerializer(serializers.ModelSerializer):
         if 'allauth.account' not in settings.INSTALLED_APPS:
             # We don't need to call the all-auth
             # username validator unless its installed
+            
             return username
 
         from allauth.account.adapter import get_adapter
@@ -98,6 +102,7 @@ class UserDetailsSerializer(serializers.ModelSerializer):
             extra_fields.append(UserModel.USERNAME_FIELD)
         if hasattr(UserModel, 'EMAIL_FIELD'):
             extra_fields.append(UserModel.EMAIL_FIELD)
+            
         if hasattr(UserModel, 'first_name'):
             extra_fields.append('first_name')
         if hasattr(UserModel, 'last_name'):

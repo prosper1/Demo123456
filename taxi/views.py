@@ -27,6 +27,7 @@ from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.generics import GenericAPIView, RetrieveUpdateAPIView
 import json
 import requests
+from django.core.mail import send_mail
 
 # Create your views here.
 
@@ -260,3 +261,30 @@ class DriverTaxiStatusViewSet(viewsets.ModelViewSet):
                 status = TaxiStatus.objects.filter(taxi__driver__user=driver)
 
         return status
+    
+
+    
+class EmailSendView(APIView):
+    """
+    Sends emails
+    """
+    @csrf_exempt
+    def post(self, request, *args, **kwargs):
+        send_mail(
+                'Registration Complete',
+                'You or someone pretending to be you, registered successfully on findtaxi.',
+                'no-reply@findtaxi.com',
+                ['gundotshili@gmail.com'],
+                fail_silently=False,
+            )
+        print("email sent")
+        
+        """Check username availability"""
+        response = {
+            'message': "email_sent",
+        }
+        return JsonResponse(data=response)
+
+
+
+            
