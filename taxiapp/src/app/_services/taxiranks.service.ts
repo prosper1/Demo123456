@@ -61,7 +61,7 @@ export class TaxiranksService {
 
 
   payTaxi(bookingData: object): Observable<any>{
-    return this.http.post(`${apiUrl}/paid-passenger/`, bookingData, httpOptions).pipe(
+    return this.http.post(`${apiUrl}paid-passengers/`, bookingData, httpOptions).pipe(
       tap(_ => console.log('pay taxi'))
     );
   }

@@ -28,15 +28,16 @@ export class RideComponent implements OnInit {
       name: ['', [ Validators.required]],
       cardNumber: ['', [ Validators.required]],
       expireDate: ['', [ Validators.required]],
-      ccv: ['', [ Validators.required]],
+      cvv: ['', [ Validators.required]],
     });
 
     this.route.queryParams.subscribe(params => {
       if (this.router.getCurrentNavigation()?.extras.state) {
-        const result = this.router.getCurrentNavigation()?.extras.state?.taxis;
+        const result = this.router.getCurrentNavigation()?.extras.state?.taxi;
         const priceResult = this.router.getCurrentNavigation()?.extras.state?.price;
   
         this.price = priceResult
+        this.taxiId = Number(result)
       }
       else {
         const carId = this.route.snapshot.params.id;
@@ -49,6 +50,11 @@ export class RideComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    if ( localStorage.getItem('user') != null){
+      const user = JSON.parse(localStorage.getItem('user')??'')
+      this.userId = user.pk
+    }
+    
   }
 
   get f() { return this.form.controls; }

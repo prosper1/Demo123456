@@ -206,7 +206,7 @@ class DistanceView(APIView):
 
 
 class PaymentViewSet(viewsets.ModelViewSet):
-    serializer_class = DriverSerializer
+    serializer_class = PaymentSerializer
     queryset = PaymentMethod.objects.all().order_by('-id')
     filter_backends = (DjangoFilterBackend,)
     permission_classes = (IsAuthenticated,)
