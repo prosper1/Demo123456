@@ -138,6 +138,18 @@ class PaymentSerializer(serializers.ModelSerializer):
         ]
 
 
+class PayTaxiSerializer(serializers.ModelSerializer):
+   
+    class Meta:
+        model = PaymentMethod
+        fields = [
+            "pay_user",
+            "pay_option",
+            "pay_taxi",
+            "price"
+        ]       
+
+
 
 class TaxiStatusSerializers(serializers.ModelSerializer):
     taxi = serializers.HyperlinkedRelatedField(

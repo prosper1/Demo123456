@@ -13,7 +13,8 @@ from .serializers import (
     TaxiSerializer,
     UserDetailsSerializer,
     PaymentSerializer,
-    TaxiStatusSerializers
+    TaxiStatusSerializers,
+    PayTaxiSerializer
 )
 from rest_framework.filters import SearchFilter
 from django_filters.rest_framework import DjangoFilterBackend
@@ -207,6 +208,23 @@ class DistanceView(APIView):
 
 class PaymentViewSet(viewsets.ModelViewSet):
     serializer_class = PaymentSerializer
+    queryset = PaymentMethod.objects.all().order_by('-id')
+    filter_backends = (DjangoFilterBackend,)
+    permission_classes = (IsAuthenticated,)
+    authentication_classes = [
+        BasicAuthentication,
+        TokenAuthentication,
+        SessionAuthentication,
+    ]
+    
+
+    def get_queryset(self):
+        driver = self.request.user
+        return PaymentMethod.objects.filter(pay_taxi__driver__user=driver)
+    
+
+class PayTaxiViewSet(viewsets.ModelViewSet):
+    serializer_class = PayTaxiSerializer
     queryset = PaymentMethod.objects.all().order_by('-id')
     filter_backends = (DjangoFilterBackend,)
     permission_classes = (IsAuthenticated,)
