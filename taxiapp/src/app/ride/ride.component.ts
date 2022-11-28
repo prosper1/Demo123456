@@ -52,7 +52,11 @@ export class RideComponent implements OnInit {
   ngOnInit(): void {
     if ( localStorage.getItem('user') != null){
       const user = JSON.parse(localStorage.getItem('user')??'')
-      this.userId = user.pk
+      this.userId = Number(user.pk)
+      console.log(this.userId)
+    }
+    else{
+      this.router.navigate(['payment/success'])
     }
     
   }
